@@ -111,14 +111,10 @@ h1 .soft{background:linear-gradient(100deg,#CDBDFF 0%,#BFE0FF 45%,#FFFFFF 80%);-
 .askrow{display:flex;align-items:flex-start;gap:.75rem;padding:1.1rem 1.2rem .4rem}
 .askicon{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#5B3DF5,#3F86F4);color:#fff;margin-top:.15rem}
 .askicon svg{width:20px;height:20px}
-textarea#ask{flex:1;display:block;width:100%;min-height:58px;max-height:30vh;resize:none;padding:.45rem 0;border:0;background:transparent;color:var(--ink);font:17px/1.55 var(--sans)}
-textarea#ask::placeholder{color:var(--muted)}
-textarea#ask:focus{outline:none}
 .prompt-bar{display:flex;align-items:center;gap:.4rem;padding:.4rem .7rem .7rem .9rem;flex-wrap:wrap}
 .suggest{display:inline-flex;align-items:center;padding:.4rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--sunk);color:var(--ink);font-weight:500;font-size:.84rem;cursor:pointer}
 .suggest:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--accent)}
 .prompt-bar .spacer{flex:1}
-@media (max-width:640px){.prompt-bar .spacer{display:none} #askBtn{width:100%;margin-top:.3rem}}
 .answer{border-top:1px solid var(--line);padding:1.1rem 1.25rem 1.2rem;max-height:52vh;overflow:auto}
 .answer .who{display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:.4rem}
 .answer .body{color:var(--text);font-size:.98rem}
@@ -301,6 +297,59 @@ h3{color:var(--ink)}
 .left{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:700;padding:.2rem .65rem;border-radius:999px;background:var(--mint-bg);color:var(--mint)}
 .left.soon{background:var(--warn-bg);color:var(--warn)}
 .call .row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto;padding-top:.3rem}
+
+/* floating chat window */
+.herocta{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2rem}
+.btn.lg{padding:.85rem 1.45rem;font-size:1.02rem}
+.btn.lg svg{width:19px;height:19px}
+.chatfab{position:fixed;right:calc(1.2rem + env(safe-area-inset-right,0px));bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));z-index:60;display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.15rem .55rem .55rem;border-radius:999px;border:0;cursor:pointer;color:#fff;font-weight:600;font-size:.96rem;background:linear-gradient(135deg,#5B3DF5,#3F86F4);box-shadow:0 18px 40px -14px rgba(40,16,166,.75);transition:transform .15s}
+.chatfab:hover{transform:translateY(-2px)}
+.chatfab .orb{position:relative;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18)}
+.chatfab .orb svg{width:20px;height:20px}
+.chatfab .orb::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(124,240,181,.8);animation:ring 2.6s ease-out infinite}
+@keyframes ring{0%{transform:scale(.85);opacity:1}100%{transform:scale(1.35);opacity:0}}
+.chatwin{position:fixed;z-index:61;left:0;top:0;width:380px;height:560px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);display:flex;flex-direction:column;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 100px -30px rgba(10,0,60,.55),0 2px 6px rgba(10,0,60,.12);overflow:hidden}
+.chatwin[open-anim]{animation:pop .22s cubic-bezier(.2,.8,.2,1)}
+.chatwin.moving{box-shadow:0 50px 120px -30px rgba(10,0,60,.7);user-select:none}
+.chatwin.moving .chathead{cursor:grabbing}
+.chathead{position:relative;display:flex;align-items:center;gap:.65rem;padding:.7rem .65rem .7rem .8rem;background:var(--hero);color:#fff;cursor:grab;touch-action:none;flex:none}
+.chathead .grip{width:14px;height:20px;opacity:.6;flex:none}
+.chathead .orb{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.16);flex:none}
+.chathead .orb svg{width:19px;height:19px}
+.chathead .tt{flex:1;min-width:0;line-height:1.2}
+.chathead b{display:block;font-weight:600;font-size:1rem}
+.chathead small{display:flex;align-items:center;gap:.35rem;font-size:.76rem;color:rgba(255,255,255,.78)}
+.chathead small::before{content:"";width:7px;height:7px;border-radius:50%;background:#7CF0B5}
+.chatbtn{width:34px;height:34px;border-radius:10px;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+.chatbtn:hover{background:rgba(255,255,255,.22)}
+.chatbtn svg{width:17px;height:17px}
+.chatlog{flex:1;overflow:auto;padding:1rem .9rem;display:flex;flex-direction:column;gap:.7rem;background:var(--page);overscroll-behavior:contain}
+.msg{display:flex;gap:.5rem;align-items:flex-end}
+.msg.user{justify-content:flex-end}
+.msg .mini{width:26px;height:26px;border-radius:9px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,#5B3DF5,#3F86F4)}
+.msg .mini svg{width:14px;height:14px}
+.bubble{max-width:86%;padding:.65rem .9rem;border-radius:18px;font-size:.93rem;line-height:1.5;overflow-wrap:anywhere}
+.msg.bot .bubble{background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:6px}
+.msg.user .bubble{background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:6px}
+.bubble p{margin:.2rem 0}.bubble ul{margin:.3rem 0;padding-left:1.1rem}
+.bubble .hits{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+.bubble .hit{font-size:.78rem;padding:.3rem .65rem}
+.chatsug{display:flex;gap:.4rem;padding:.6rem .8rem 0;overflow-x:auto;flex:none;scrollbar-width:none}
+.chatsug .suggest{white-space:nowrap;flex:none}
+.chatin{display:flex;align-items:flex-end;gap:.5rem;padding:.6rem .7rem .4rem;flex:none}
+.chatin textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:16px;padding:.62rem .85rem;background:var(--sunk);color:var(--ink);max-height:120px;min-height:44px;font:15px/1.45 var(--sans)}
+.chatin textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+.sendbtn{width:44px;height:44px;border-radius:14px;border:0;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;cursor:pointer;flex:none}
+.sendbtn:disabled{opacity:.5;cursor:not-allowed}
+.sendbtn svg{width:19px;height:19px}
+.chatnote{margin:0;padding:0 .9rem .65rem;font-size:.72rem;color:var(--muted);flex:none}
+.chatresize{position:absolute;right:0;bottom:0;width:22px;height:22px;cursor:nwse-resize;touch-action:none;background:linear-gradient(135deg,transparent 0 55%,var(--muted) 55% 60%,transparent 60% 70%,var(--muted) 70% 75%,transparent 75%);opacity:.5}
+.chatresize:hover{opacity:.9}
+@media (max-width:600px){
+  .chatwin{left:8px!important;right:8px;top:auto!important;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:auto!important;height:min(80dvh,640px)!important;max-width:none}
+  .chathead{cursor:default}.chathead .grip,.chatresize{display:none}
+  .chatfab{padding:.55rem}.chatfab .lbl{display:none}
+}
 
 /* featured workshop banner */
 .cfeature{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(1.2rem,3vw,2.4rem);align-items:center;padding:clamp(1.4rem,3.5vw,2.6rem);border-radius:28px;overflow:hidden;color:#fff;background:var(--hero);margin-bottom:1rem;isolation:isolate}
@@ -497,7 +546,6 @@ dialog.drawer[open]{animation:slidein .25s cubic-bezier(.2,.8,.2,1)}
 .rowic svg{width:20px;height:20px}
 .imgf .prev svg{width:26px;height:26px}
 .arow .acts svg{width:16px;height:16px}
-@media (max-width:640px){textarea#ask{min-height:84px}#suggestions .suggest:nth-child(n+3){display:none}}
 </style>
 </head>
 <body>
@@ -538,29 +586,10 @@ dialog.drawer[open]{animation:slidein .25s cubic-bezier(.2,.8,.2,1)}
     <h1 id="heroTitle"><span class="soft">Artificial intelligence</span><br>you can trust.</h1>
     <p class="lede" id="heroLede">We build trustworthy, privacy-preserving AI for connected systems: federated learning, edge intelligence, secure networks and quantum machine learning.</p>
 
-    <div class="prompt">
-      <div class="prompt-card">
-        <div class="askrow">
-          <span class="askicon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
-          <label class="sr" for="ask">Ask about the lab</label>
-          <textarea id="ask" rows="2" placeholder="Ask about our research, people, papers or open positions…"></textarea>
-        </div>
-        <div class="prompt-bar">
-          <span id="suggestions" style="display:contents"></span>
-          <span class="spacer"></span>
-          <button class="btn primary" id="askBtn">
-            <span id="askLabel">Ask TrustNet AI</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
-          </button>
-        </div>
-        <div class="answer" id="answer" aria-live="polite" hidden>
-          <div class="who"><span class="aitag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg><span id="answerWho">TrustNet AI</span></span><span id="answerNote"></span></div>
-          <div class="body" id="answerBody"></div>
-          <div class="hits" id="answerHits"></div>
-        </div>
-      </div>
+    <div class="herocta">
+      <button class="btn light lg" type="button" data-openchat><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="askLabel">Ask TrustNet AI</span></button>
+      <a class="btn glass lg" href="#research">Explore our research</a>
     </div>
-    <p class="trust" id="trustLine">Answers come from this website’s own pages: our people, papers, projects and openings.</p>
     <div class="areastrip" id="areaStrip"></div>
   </div>
 </header>
@@ -683,6 +712,26 @@ dialog.drawer[open]{animation:slidein .25s cubic-bezier(.2,.8,.2,1)}
   <span id="footLinks"></span>
   <span class="copyright"><span id="copy"></span> <span id="adminFoot"></span></span>
 </footer>
+
+<button class="chatfab" id="chatFab" type="button" data-openchat aria-controls="chatWin" aria-expanded="false"><span class="orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><span class="lbl askLabel">Ask TrustNet AI</span></button>
+<section class="chatwin" id="chatWin" role="dialog" aria-labelledby="chatTitle" hidden>
+  <header class="chathead" id="chatHead" title="Drag to move. Double-click to reset position.">
+    <svg class="grip" viewBox="0 0 14 20" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.6"/><circle cx="10" cy="4" r="1.6"/><circle cx="4" cy="10" r="1.6"/><circle cx="10" cy="10" r="1.6"/><circle cx="4" cy="16" r="1.6"/><circle cx="10" cy="16" r="1.6"/></svg>
+    <span class="orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+    <span class="tt"><b id="chatTitle">TrustNet AI</b><small id="chatStatus">Answers from this website</small></span>
+    <button class="chatbtn" type="button" id="chatNew" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.6"/><path d="M4 4v4.6h4.6"/></svg></button>
+    <button class="chatbtn" type="button" id="chatClose" aria-label="Minimise chat" title="Minimise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 12h12"/></svg></button>
+  </header>
+  <div class="chatlog" id="chatLog" aria-live="polite"></div>
+  <div class="chatsug" id="suggestions"></div>
+  <form class="chatin" id="chatForm">
+    <label class="sr" for="ask">Message TrustNet AI</label>
+    <textarea id="ask" rows="1" placeholder="Ask about research, people, papers…"></textarea>
+    <button class="sendbtn" id="askBtn" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+  </form>
+  <p class="chatnote" id="trustLine">Answers come only from this website’s pages.</p>
+  <span class="chatresize" id="chatResize" aria-hidden="true" title="Drag to resize"></span>
+</section>
 </div>
 
 <div id="adminView" hidden></div>
@@ -810,7 +859,7 @@ function renderSite(){
   if(vis(S.vacancies).some(v=>v.open!==false))sug.push("Which positions are open?");
   else sug.push("How can I join the lab?");
   if(vis(S.publications).length)sug.push("Summarize the latest papers");
-  $("#suggestions").innerHTML=sug.slice(0,3).map(s=>`<button class="suggest" type="button">${esc(s)}</button>`).join("");
+  if(!CHAT.length)$("#suggestions").innerHTML=sug.slice(0,4).map(s=>`<button class="suggest" type="button">${esc(s)}</button>`).join("");
   renderFloaters();
   // about
   if(st.aboutTitle)$("#aboutTitle").textContent=st.aboutTitle;
@@ -1104,7 +1153,7 @@ document.addEventListener("click",e=>{
   else if(d.bib){const p=S.publications.find(x=>x.id===d.bib);navigator.clipboard?.writeText(bibtex(p)).then(()=>toast("BibTeX copied"),()=>toast("Couldn’t copy. Select the text manually."))}
   else if(d.explain)explainPaper(d.explain);
   else if(d.ref)openRef(d.ref);
-  else if(t.classList.contains("suggest")){$("#ask").value=t.textContent;runAsk()}
+  else if(t.classList.contains("suggest")){runAsk(t.textContent)}
 });
 function openRef(ref){const [c,id]=ref.split("/");({calls:openCall,people:openPerson,projects:openProject,posts:openPost,events:openEvent}[c]||((id)=>{if(c==="publications"){UI.open.add(id);UI.pubQ="";$("#pubQ").value="";UI.pubYear="";UI.pubType="all";const i=sortedPubs(vis(S.publications)).findIndex(p=>p.id===id);UI.pubN=Math.max(10,i+1);renderPubs();setTimeout(()=>document.querySelector(`[data-pid="${CSS.escape(id)}"]`)?.scrollIntoView({block:"center"}),50)}else if(c==="vacancies")location.hash="join"}))(id)}
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches?.(".call[data-call]")){e.preventDefault();openCall(e.target.dataset.call)}});
@@ -1141,42 +1190,86 @@ function localSearch(q){
 }
 const CNAME={calls:"Call",people:"Person",publications:"Paper",projects:"Project",posts:"Post",events:"Event",vacancies:"Position"};
 function hitChips(refs){return refs.map(r=>{const x=findRef(r);if(!x)return"";const c=r.split("/")[0];return `<button class="hit" data-ref="${esc(r)}"><small>${CNAME[c]}</small>${esc(trunc(refTitle(c,x),56))}</button>`}).join("")}
-let askCtl=null;
-async function runAsk(){
-  const q=$("#ask").value.trim();if(!q){$("#ask").focus();return}
-  const box=$("#answer"),body=$("#answerBody"),hits=$("#answerHits");
-  box.hidden=false;hits.innerHTML="";$("#answerNote").textContent="";
+let askCtl=null;const CHAT=[];
+const SPARK_SVG=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>`;
+function scrollLog(){const l=$("#chatLog");l.scrollTop=l.scrollHeight}
+function chatAdd(role,html){const el=document.createElement("div");el.className="msg "+role;el.innerHTML=(role==="bot"?`<span class="mini">${SPARK_SVG}</span>`:"")+`<div class="bubble">${html}</div>`;$("#chatLog").appendChild(el);scrollLog();return $(".bubble",el)}
+function welcome(){$("#chatLog").innerHTML="";chatAdd("bot",sampleCap?`<p>Hi! I’m TrustNet AI. Ask me about ${esc(labName())}’s research, people, papers, workshops or open positions.</p>`:`<p>Hi! I can search ${esc(labName())}’s website for people, papers, projects, workshops and open positions. What are you looking for?</p>`)}
+function autoGrow(){const t=$("#ask");t.style.height="auto";t.style.height=Math.min(120,t.scrollHeight)+"px"}
+async function runAsk(text){
+  const q=String(text??$("#ask").value).trim();openChat();if(!q){$("#ask").focus();return}
+  $("#ask").value="";autoGrow();$("#suggestions").innerHTML="";
+  const hist=CHAT.slice(-6);
+  chatAdd("user",esc(q));CHAT.push({role:"Visitor",text:q});
+  const b=chatAdd("bot",`<span class="thinking"><i></i><i></i><i></i></span>`);
   if(!sampleCap){
-    const r=localSearch(q);$("#answerWho").textContent="Search results";
-    body.innerHTML=r.length?`<p>Here’s what matches on this site:</p>`:`<p>Nothing on the site matches that yet. Try different words, or browse the sections below.</p>`;
-    hits.innerHTML=hitChips(r);return;
+    const r=localSearch(q);
+    b.innerHTML=r.length?`<p>Here’s what matches on this site:</p><div class="hits">${hitChips(r)}</div>`:`<p>Nothing on the site matches that yet. Try different words, or browse the sections on the page.</p>`;
+    CHAT.push({role:"Assistant",text:"(showed search results)"});scrollLog();return;
   }
   askCtl?.abort();askCtl=new AbortController();
-  $("#answerWho").textContent="TrustNet AI";
-  body.innerHTML=`<span class="thinking"><i></i><i></i><i></i></span>`;
   const btn=$("#askBtn");btn.disabled=true;
-  const prompt=`You are the assistant on the public website of ${labName()}, a research lab. Answer the visitor's question using ONLY the lab data below. Be warm, specific and brief (under 140 words). Use short paragraphs or a few "- " bullet points. Name the people, papers or projects you mean. If the data doesn't answer it, say so and suggest emailing the lab${S.settings.email?" at "+S.settings.email:""}. Never invent facts, dates or links.
+  const prompt=`You are TrustNet AI, the chat assistant on the public website of ${labName()}, a research lab. Answer the visitor using ONLY the lab data below. Be warm, specific and brief (under 120 words). Use short paragraphs or a few "- " bullet points. Name the people, papers, workshops or projects you mean. If the data doesn't answer it, say so and suggest emailing the lab${S.settings.email?" at "+S.settings.email:""}. Never invent facts, dates or links.
 After your answer, on its own final line, write REFS: followed by up to 6 comma-separated "ref" values of the items you mentioned (or REFS: none).
 
 LAB DATA (JSON):
 ${labContext()}
-
-VISITOR QUESTION: ${q}`;
+${hist.length?`\nCONVERSATION SO FAR:\n${hist.map(h=>`${h.role}: ${trunc(h.text,600)}`).join("\n")}\n`:""}
+VISITOR: ${q}`;
   try{
-    const {text}=await sampleCap(prompt,{signal:askCtl.signal,modelTier:"quick",onText:({text})=>{body.innerHTML=md(text.split(/\n?REFS:/)[0])}});
-    const parts=text.split(/\n?REFS:/);body.innerHTML=md(parts[0]);
+    const {text}=await sampleCap(prompt,{signal:askCtl.signal,modelTier:"quick",onText:({text})=>{b.innerHTML=md(text.split(/\n?REFS:/)[0]);scrollLog()}});
+    const parts=text.split(/\n?REFS:/);
     const refs=(parts[1]||"").split(",").map(s=>s.trim().replace(/[`"']/g,"")).filter(r=>r&&r!=="none"&&findRef(r));
-    hits.innerHTML=hitChips(refs);
+    b.innerHTML=md(parts[0])+(refs.length?`<div class="hits">${hitChips(refs)}</div>`:"");
+    CHAT.push({role:"Assistant",text:parts[0]});
   }catch(e){
     if(e.code==="cancelled")return;
     const r=localSearch(q);
     const why=e.code==="not_granted"?"AI answers need your permission. Here are matching pages instead:":e.code==="rate_limited"?"Lots of questions right now. Here are matching pages while you wait:":"The AI answer didn’t come through. Here are matching pages:";
-    $("#answerWho").textContent="Search results";body.innerHTML=`<p>${why}</p>`;hits.innerHTML=hitChips(r);
+    b.innerHTML=`<p>${why}</p>${r.length?`<div class="hits">${hitChips(r)}</div>`:""}`;
     if(e.code==="not_granted")sampleCap=null;
-  }finally{btn.disabled=false}
+  }finally{btn.disabled=false;scrollLog()}
 }
-$("#askBtn").addEventListener("click",runAsk);
+/* ---------- chat window: open, drag, resize ---------- */
+const CW={x:null,y:null,w:380,h:560};
+try{Object.assign(CW,JSON.parse(localStorage.getItem("tn-chat")||"{}"))}catch(e){}
+const saveCW=()=>{try{localStorage.setItem("tn-chat",JSON.stringify({x:CW.x,y:CW.y,w:CW.w,h:CW.h}))}catch(e){}};
+const mobileChat=()=>matchMedia("(max-width:600px)").matches;
+function placeChat(){
+  const w=$("#chatWin");if(w.hidden)return;
+  if(mobileChat()){w.style.left=w.style.top=w.style.width=w.style.height="";return}
+  const vw=document.documentElement.clientWidth,vh=innerHeight;
+  const W=Math.max(300,Math.min(CW.w||380,vw-16)),H=Math.max(360,Math.min(CW.h||560,vh-16));
+  let x=CW.x??(vw-W-24),y=CW.y??(vh-H-24);
+  x=Math.max(8,Math.min(x,vw-W-8));y=Math.max(8,Math.min(y,vh-H-8));
+  Object.assign(w.style,{left:x+"px",top:y+"px",width:W+"px",height:H+"px"});
+}
+function openChat(){
+  const w=$("#chatWin");if(!w.hidden)return;
+  w.hidden=false;w.setAttribute("open-anim","");setTimeout(()=>w.removeAttribute("open-anim"),300);
+  $("#chatFab").hidden=true;$("#chatFab").setAttribute("aria-expanded","true");
+  placeChat();if(!$("#chatLog").children.length)welcome();
+  setTimeout(()=>$("#ask").focus({preventScroll:true}),40);
+}
+function closeChat(){askCtl=null;$("#chatWin").hidden=true;const f=$("#chatFab");f.hidden=false;f.setAttribute("aria-expanded","false");f.focus()}
+document.addEventListener("click",e=>{if(e.target.closest("[data-openchat]"))openChat()});
+$("#chatClose").addEventListener("click",closeChat);
+$("#chatNew").addEventListener("click",()=>{askCtl?.abort();CHAT.length=0;welcome();render();$("#ask").focus()});
+$("#chatForm").addEventListener("submit",e=>{e.preventDefault();runAsk()});
 $("#ask").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();runAsk()}});
+$("#ask").addEventListener("input",autoGrow);
+$("#chatWin").addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.open){e.stopPropagation();closeChat()}});
+addEventListener("resize",placeChat);
+(function(){
+  const w=$("#chatWin"),head=$("#chatHead"),grip=$("#chatResize");let st=null;
+  head.addEventListener("pointerdown",e=>{if(e.button!==0||e.target.closest("button")||mobileChat())return;const r=w.getBoundingClientRect();st={mode:"move",sx:e.clientX,sy:e.clientY,x:r.left,y:r.top};w.classList.add("moving");head.setPointerCapture(e.pointerId);e.preventDefault()});
+  grip.addEventListener("pointerdown",e=>{if(e.button!==0||mobileChat())return;const r=w.getBoundingClientRect();st={mode:"size",sx:e.clientX,sy:e.clientY,w:r.width,h:r.height,x:r.left,y:r.top};w.classList.add("moving");grip.setPointerCapture(e.pointerId);e.preventDefault()});
+  const move=e=>{if(!st)return;const dx=e.clientX-st.sx,dy=e.clientY-st.sy;
+    if(st.mode==="move"){CW.x=st.x+dx;CW.y=st.y+dy}else{CW.x=st.x;CW.y=st.y;CW.w=Math.max(300,st.w+dx);CW.h=Math.max(360,st.h+dy)}placeChat()};
+  const up=()=>{if(!st)return;st=null;w.classList.remove("moving");const r=w.getBoundingClientRect();CW.x=r.left;CW.y=r.top;CW.w=r.width;CW.h=r.height;saveCW()};
+  for(const el of [head,grip]){el.addEventListener("pointermove",move);el.addEventListener("pointerup",up);el.addEventListener("pointercancel",up)}
+  head.addEventListener("dblclick",e=>{if(e.target.closest("button"))return;CW.x=CW.y=null;CW.w=380;CW.h=560;placeChat();saveCW()});
+})();
 async function explainPaper(id){
   const p=S.publications.find(x=>x.id===id),out=document.getElementById("ex-"+id);if(!p||!out||!sampleCap)return;
   out.innerHTML=`<div class="aibox"><div class="who">${ic("spark")}Plain-language summary</div><div class="tx"><span class="thinking"><i></i><i></i><i></i></span></div></div>`;
@@ -1668,7 +1761,7 @@ async function exportSite(){
     clone.removeAttribute("data-theme");
     $("#adminView",clone).innerHTML="";$("#adminView",clone).hidden=true;$("#siteView",clone).hidden=false;
     $("#modal",clone).innerHTML="";$("#modal",clone).removeAttribute("open");$("#drawer",clone).innerHTML="";$("#drawer",clone).removeAttribute("open");
-    $("#answer",clone).hidden=true;
+    $("#chatWin",clone).hidden=true;$("#chatLog",clone).innerHTML="";$("#chatFab",clone).hidden=false;
     $$("script[src]",clone).forEach(x=>{if(/pdf\.js|mammoth/.test(x.src))x.remove()});
     const s=document.createElement("script");s.textContent="window.__LAB_SNAPSHOT__="+JSON.stringify(snap).replace(/</g,"\\u003c")+";";
     clone.querySelector("head").prepend(s);
@@ -1796,7 +1889,7 @@ async function ghBoot(){
   if(!data){try{const r=await fetch(DATA_PATH+"?v="+Date.now(),{cache:"no-store"});if(r.ok)data=await r.json()}catch(e){}}
   if(!data&&window.TN_DATA)data=window.TN_DATA;
   canEdit=GH_ADMIN;assetsCap=GH_ADMIN?ghAssets:null;sampleCap=GH_ADMIN&&c.aiKey?makeAnthropic():null;downloadsCap=null;
-  $("#askLabel").textContent="Search the lab";$("#trustLine").textContent="Search finds matching people, papers, projects and openings on this site.";
+  $$(".askLabel").forEach(x=>x.textContent="Search the lab");$("#chatTitle").textContent="Search the lab";$("#chatStatus").textContent="Finds pages on this website";$("#trustLine").textContent="Search finds matching people, papers, workshops and openings on this site.";
   S.booted=true;
   if(!data){S.ready=true;if(location.protocol==="file:")GHS.msg="Open this site through GitHub Pages or a local web server; browsers block reading data/lab.json from a file.";ghAttach({});GHS.dirty=false;render();return}
   ghAttach(data);GHS.dirty=false;
@@ -1812,7 +1905,7 @@ async function boot(){
   db=d;userCap=u;sampleCap=s;assetsCap=a;downloadsCap=dl;
   if(u){try{canEdit=await u.canEdit()}catch(e){canEdit=false}}
   $("#adminLink").hidden=!canEdit;
-  if(!s)$("#askLabel").textContent="Search the lab";
+  if(!s){$$(".askLabel").forEach(x=>x.textContent="Search the lab");$("#chatTitle").textContent="Search the lab";$("#chatStatus").textContent="Finds pages on this website"}
   S.booted=true;
   if(!db){S.ready=true;render();return}
   const got=new Set();const done=()=>{if(got.size>=COLS.length+1&&!S.ready){S.ready=true}render()};
