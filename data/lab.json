@@ -1,0 +1,281 @@
+{
+  "settings": {
+    "aboutTitle": "Trust is the hardest part of intelligent systems.",
+    "announceLink": "#projects",
+    "announceText": "CiTrue: our free citation checker is live",
+    "areas": [
+      {
+        "desc": "Client selection, aggregation and encryption for private, reliable training.",
+        "title": "Trustworthy federated learning"
+      },
+      {
+        "desc": "Fast, efficient AI on fog and edge devices.",
+        "title": "Edge intelligence"
+      },
+      {
+        "desc": "Blockchain and post-quantum security for V2X and IoV.",
+        "title": "Secure vehicular networks"
+      },
+      {
+        "desc": "Hybrid quantum-classical models and quantum federated learning.",
+        "title": "Quantum machine learning"
+      },
+      {
+        "desc": "Models that reason about cause and effect, for decisions that hold up when conditions change.",
+        "title": "Causal AI"
+      },
+      {
+        "desc": "Embodied intelligence for robots, vehicles and other systems that sense and act in the real world.",
+        "title": "Physical AI"
+      }
+    ],
+    "heroLine1": "Artificial intelligence",
+    "heroLine2": "you can trust.",
+    "lede": "We build trustworthy, privacy-preserving AI for connected systems: federated learning, edge intelligence, secure networks, quantum machine learning, causal AI and physical AI.",
+    "linkedin": "https://www.linkedin.com/in/asadullah-tariq/",
+    "mission": "TrustNet Lab studies how to make AI secure, private and dependable when it is trained and deployed across many devices, organizations and networks. Our work spans trustworthy federated learning, edge computing, post-quantum and blockchain security for vehicular networks, quantum machine learning, causal AI and physical AI.",
+    "name": "TrustNet Lab",
+    "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ"
+  },
+  "people": [
+    {
+      "id": "asadullah-tariq",
+      "bio": "Asadullah Tariq leads TrustNet Lab. He completed his PhD in Computer Science at the United Arab Emirates University, where his research focused on frameworks for trustworthiness in federated learning. His work covers trustworthy AI, edge AI, wireless communication and quantum machine learning, and he reviews for leading journals including IEEE Communications Surveys and Tutorials.",
+      "interests": [
+        "Trustworthy AI",
+        "Federated learning",
+        "Edge AI",
+        "Wireless communication",
+        "Quantum ML"
+      ],
+      "linkedin": "https://www.linkedin.com/in/asadullah-tariq/",
+      "name": "Dr. Asadullah Tariq",
+      "orcid": "0000-0002-2791-2347",
+      "order": 1,
+      "role": "head",
+      "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ",
+      "title": "Postdoctoral Researcher, Zayed University; Visiting Assistant Professor, Canadian University Dubai",
+      "website": "https://sites.google.com/view/asadullah-tariq/home"
+    }
+  ],
+  "publications": [
+    {
+      "id": "p01",
+      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Tariq Qayyum, Ezedin Salem Barka",
+      "featured": true,
+      "tags": [
+        "Federated learning",
+        "Encryption"
+      ],
+      "title": "Dynamic Edge Computing with MARL and AI-Driven Selective Homomorphic Encryption for Trustworthy Federated Learning",
+      "type": "conference",
+      "venue": "IEEE INFOCOM Workshops",
+      "year": 2025
+    },
+    {
+      "id": "p02",
+      "authors": "Asadullah Tariq, Tariq Qayyum, Mohamed Adel Serhani, Farag M. Sallabi, Ikbal Taleb, Ezedin Salem Barka",
+      "tags": [
+        "Federated learning"
+      ],
+      "title": "Enhancing Communication Efficiency in FL with Adaptive Gradient Quantization and Communication Frequency Optimization",
+      "type": "conference",
+      "venue": "IEEE ICC",
+      "year": 2025
+    },
+    {
+      "id": "p03",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Asad Waqar Malik, Irfanud Din",
+      "featured": true,
+      "tags": [
+        "Federated learning",
+        "Fog computing"
+      ],
+      "title": "DHFL: Decentralized Hierarchical Federated Learning With Dynamic Global Aggregation for Privacy-Aware Fog Computing",
+      "type": "journal",
+      "venue": "IEEE Transactions on Consumer Electronics 71(2)",
+      "year": 2025
+    },
+    {
+      "id": "p04",
+      "authors": "Tariq Qayyum, Asad Waqar Malik, Asadullah Tariq, Mohamed Adel Serhani, Zouheir Trabelsi",
+      "tags": [
+        "Post-quantum",
+        "Vehicular networks"
+      ],
+      "title": "Optimizing Post-Quantum Secure Communication via DL-Based KEM Selection in VANETs",
+      "type": "conference",
+      "venue": "IEEE VTC2025-Fall",
+      "year": 2025
+    },
+    {
+      "id": "p05",
+      "authors": "Muhammad Ali, Usman Nazir, Mubashar Mushtaq, Faizad Ullah, Tariq Qayyum, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din",
+      "tags": [
+        "Edge computing",
+        "Vehicular networks"
+      ],
+      "title": "Deep Learning-Based Task Offloading for Efficient and Reliable Computation in High-Mobility Vehicular Networks",
+      "type": "conference",
+      "venue": "IWCMC",
+      "year": 2025
+    },
+    {
+      "id": "p06",
+      "authors": "Asadullah Tariq, Tariq Qayyum, Saed Alrabaee, Mohamed Adel Serhani",
+      "tags": [
+        "Blockchain",
+        "Cybersecurity"
+      ],
+      "title": "Blockchain and Distributed Ledger Technologies for Cyberthreat Intelligence Sharing",
+      "type": "preprint",
+      "url": "https://arxiv.org/abs/2504.02537",
+      "venue": "arXiv:2504.02537",
+      "year": 2025
+    },
+    {
+      "id": "p07",
+      "authors": "Tariq Qayyum, Asadullah Tariq, Muhammad Ali, Mohamed Adel Serhani, Zouheir Trabelsi, Maite López-Sánchez",
+      "tags": [
+        "LLMs",
+        "Benchmarks"
+      ],
+      "title": "Domain Specific Benchmarks for Evaluating Multimodal Large Language Models",
+      "type": "preprint",
+      "url": "https://arxiv.org/abs/2506.12958",
+      "venue": "arXiv:2506.12958",
+      "year": 2025
+    },
+    {
+      "id": "p08",
+      "authors": "Tariq Qayyum, M. Waqas Haseeb Khan, Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Zouheir Trabelsi, Ikbal Taleb",
+      "tags": [
+        "Quantum ML",
+        "Federated learning"
+      ],
+      "title": "Quantum Federated Learning: Bridging Quantum Computing and Distributed AI",
+      "type": "conference",
+      "venue": "IEEE/ACM UCC",
+      "year": 2024
+    },
+    {
+      "id": "p09",
+      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Barka",
+      "tags": [
+        "Federated learning",
+        "Trust"
+      ],
+      "title": "A Trust and Data Quality-Based Dynamic Node Selection and Aggregation Optimization in Federated Learning",
+      "type": "conference",
+      "venue": "IWCMC",
+      "year": 2024
+    },
+    {
+      "id": "p10",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka, Khaled A. Shuaib",
+      "featured": true,
+      "tags": [
+        "Survey",
+        "Federated learning"
+      ],
+      "title": "Trustworthy Federated Learning: A Survey",
+      "type": "preprint",
+      "url": "https://arxiv.org/abs/2305.11537",
+      "venue": "arXiv:2305.11537",
+      "year": 2023
+    },
+    {
+      "id": "p11",
+      "authors": "Asadullah Tariq, Abderrahmane Lakas, Farag M. Sallabi, Tariq Qayyum, Mohamed Adel Serhani, Ezedin Barka",
+      "tags": [
+        "Federated learning",
+        "Reinforcement learning"
+      ],
+      "title": "Empowering Trustworthy Client Selection in Edge Federated Learning Leveraging Reinforcement Learning",
+      "type": "conference",
+      "venue": "IEEE/ACM SEC",
+      "year": 2023
+    },
+    {
+      "id": "p12",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Muhammad Ali, Kadhim Hayawi, Irfan Ud Din",
+      "tags": [
+        "Federated learning",
+        "Internet of Vehicles"
+      ],
+      "title": "Flexible Global Aggregation and Dynamic Client Selection for Federated Learning in Internet of Vehicles",
+      "type": "journal",
+      "venue": "Journal article",
+      "year": 2023
+    },
+    {
+      "id": "p13",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din",
+      "tags": [
+        "Blockchain",
+        "V2X",
+        "Post-quantum"
+      ],
+      "title": "A Quantum-Resilient Sharded Blockchain Framework for Secure V2X and Federated Learning in Intelligent Transportation Systems",
+      "type": "journal",
+      "venue": "Journal article"
+    },
+    {
+      "id": "p14",
+      "authors": "Tariq Qayyum, Asadullah Tariq, Muhammad Waqad Haseeb, Abderrehmane Lakas, Mohamed Adel Serhani, Zouheir Trabelsi",
+      "tags": [
+        "Quantum ML"
+      ],
+      "title": "Quantum-Enhanced Convolutional Neural Networks for Image Classification",
+      "type": "conference",
+      "venue": "Conference paper"
+    }
+  ],
+  "projects": [
+    {
+      "id": "citrue",
+      "description": "Paste a reference list or drop in a paper. Each entry is checked against CrossRef, DBLP, Semantic Scholar, arXiv and OpenAlex. Retractions, duplicates and newer published versions are flagged, and mistakes come back as a corrected .bib file. Everything runs in the browser, so nothing is uploaded or stored.",
+      "featured": true,
+      "members": [
+        "asadullah-tariq"
+      ],
+      "status": "active",
+      "summary": "A free citation checker that verifies references against five scholarly databases and flags retractions.",
+      "tags": [
+        "Research integrity",
+        "Citations"
+      ],
+      "title": "CiTrue: every reference, verified"
+    }
+  ],
+  "posts": [],
+  "events": [],
+  "vacancies": [],
+  "partners": [
+    {
+      "id": "cud",
+      "country": "United Arab Emirates",
+      "kind": "university",
+      "name": "Canadian University Dubai",
+      "order": 3,
+      "url": "https://www.cud.ac.ae"
+    },
+    {
+      "id": "uaeu",
+      "country": "United Arab Emirates",
+      "kind": "university",
+      "name": "United Arab Emirates University",
+      "order": 1,
+      "url": "https://www.uaeu.ac.ae"
+    },
+    {
+      "id": "zu",
+      "country": "United Arab Emirates",
+      "kind": "university",
+      "name": "Zayed University",
+      "order": 2,
+      "url": "https://www.zu.ac.ae"
+    }
+  ],
+  "calls": []
+}
