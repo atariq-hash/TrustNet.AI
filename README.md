@@ -1,6 +1,6 @@
-# TrustNet Lab website
+# TrustNet.AI Lab website
 
-The public website and admin portal for TrustNet Lab. It runs on GitHub Pages with no server and no build step.
+The public website and admin portal for TrustNet.AI Lab. It runs on GitHub Pages with no server and no build step.
 
 | File | What it is |
 | --- | --- |

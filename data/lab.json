@@ -33,14 +33,14 @@
     "heroLine2": "you can trust.",
     "lede": "We build trustworthy, privacy-preserving AI for connected systems: federated learning, edge intelligence, secure networks, quantum machine learning, causal AI and physical AI.",
     "linkedin": "https://www.linkedin.com/in/asadullah-tariq/",
-    "mission": "TrustNet Lab studies how to make AI secure, private and dependable when it is trained and deployed across many devices, organizations and networks. Our work spans trustworthy federated learning, edge computing, post-quantum and blockchain security for vehicular networks, quantum machine learning, causal AI and physical AI.",
-    "name": "TrustNet Lab",
+    "mission": "TrustNet.AI Lab studies how to make AI secure, private and dependable when it is trained and deployed across many devices, organizations and networks. Our work spans trustworthy federated learning, edge computing, post-quantum and blockchain security for vehicular networks, quantum machine learning, causal AI and physical AI.",
+    "name": "TrustNet.AI Lab",
     "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ"
   },
   "people": [
     {
       "id": "asadullah-tariq",
-      "bio": "Asadullah Tariq leads TrustNet Lab. He completed his PhD in Computer Science at the United Arab Emirates University, where his research focused on frameworks for trustworthiness in federated learning. His work covers trustworthy AI, edge AI, wireless communication and quantum machine learning, and he reviews for leading journals including IEEE Communications Surveys and Tutorials.",
+      "bio": "Asadullah Tariq leads TrustNet.AI Lab. He completed his PhD in Computer Science at the United Arab Emirates University, where his research focused on frameworks for trustworthiness in federated learning. His work covers trustworthy AI, edge AI, wireless communication and quantum machine learning, and he reviews for leading journals including IEEE Communications Surveys and Tutorials.",
       "interests": [
         "Trustworthy AI",
         "Federated learning",
@@ -52,6 +52,7 @@
       "name": "Dr. Asadullah Tariq",
       "orcid": "0000-0002-2791-2347",
       "order": 1,
+      "photo": "assets/uploads/asadullah-tariq.jpg",
       "role": "head",
       "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ",
       "title": "Postdoctoral Researcher, Zayed University; Visiting Assistant Professor, Canadian University Dubai",
@@ -253,28 +254,94 @@
   "vacancies": [],
   "partners": [
     {
-      "id": "cud",
-      "country": "United Arab Emirates",
+      "id": "zu",
+      "name": "Zayed University",
       "kind": "university",
-      "name": "Canadian University Dubai",
-      "order": 3,
-      "url": "https://www.cud.ac.ae"
+      "country": "United Arab Emirates",
+      "url": "https://www.zu.ac.ae",
+      "logo": "assets/uploads/zu.png",
+      "order": 2
     },
     {
       "id": "uaeu",
-      "country": "United Arab Emirates",
-      "kind": "university",
       "name": "United Arab Emirates University",
-      "order": 1,
-      "url": "https://www.uaeu.ac.ae"
+      "kind": "university",
+      "country": "United Arab Emirates",
+      "url": "https://www.uaeu.ac.ae",
+      "logo": "assets/uploads/uaeu.png",
+      "order": 1
     },
     {
-      "id": "zu",
-      "country": "United Arab Emirates",
+      "id": "cud",
+      "name": "Canadian University Dubai",
       "kind": "university",
-      "name": "Zayed University",
-      "order": 2,
-      "url": "https://www.zu.ac.ae"
+      "country": "United Arab Emirates",
+      "url": "https://www.cud.ac.ae",
+      "logo": "assets/uploads/cud.png",
+      "order": 3
+    },
+    {
+      "id": "sharjah",
+      "name": "University of Sharjah",
+      "kind": "university",
+      "country": "United Arab Emirates",
+      "url": "https://www.sharjah.ac.ae",
+      "logo": "assets/uploads/sharjah.png",
+      "order": 4
+    },
+    {
+      "id": "qmul",
+      "name": "Queen Mary University of London",
+      "kind": "university",
+      "country": "United Kingdom",
+      "url": "https://www.qmul.ac.uk",
+      "logo": "assets/uploads/qmul.png",
+      "order": 5
+    },
+    {
+      "id": "adu",
+      "name": "Abu Dhabi University",
+      "kind": "university",
+      "country": "United Arab Emirates",
+      "url": "https://www.adu.ac.ae",
+      "logo": "assets/uploads/adu.png",
+      "order": 6
+    },
+    {
+      "id": "fudan",
+      "name": "Fudan University",
+      "kind": "university",
+      "country": "China",
+      "url": "https://www.fudan.edu.cn/en/",
+      "logo": "assets/uploads/fudan.png",
+      "order": 7
+    },
+    {
+      "id": "nuu",
+      "name": "New Uzbekistan University",
+      "kind": "university",
+      "country": "Uzbekistan",
+      "url": "https://newuu.uz",
+      "logo": "assets/uploads/nuu.png",
+      "order": 8
+    },
+    {
+      "id": "lums",
+      "name": "Lahore University of Management Sciences",
+      "kind": "university",
+      "country": "Pakistan",
+      "url": "https://lums.edu.pk",
+      "logo": "assets/uploads/lums.png",
+      "order": 9
+    },
+    {
+      "id": "bnu",
+      "name": "Beaconhouse National University",
+      "kind": "university",
+      "country": "Pakistan",
+      "url": "https://www.bnu.edu.pk",
+      "logo": "assets/uploads/bnu.png",
+      "order": 10
     }
   ],
   "calls": []
