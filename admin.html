@@ -78,7 +78,7 @@ a{color:var(--accent)}
 
 /* hero */
 .hero{position:relative;overflow:hidden;background:var(--hero);color:#fff;isolation:isolate;border-radius:0 0 clamp(24px,4vw,48px) clamp(24px,4vw,48px)}
-#net{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.75}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1240px;margin:0 auto;padding:1.1rem 1.5rem;position:relative;z-index:3}
 .brand{display:flex;align-items:center;text-decoration:none;color:#fff;--labsub:#BFE0FF}
 .brand svg{height:44px;width:auto;display:block}
@@ -849,7 +849,7 @@ function renderSite(){
   const an=$("#announce");
   const fc=sortedCalls(vis(S.calls)).find(c=>c.featured&&callOpen(c));
   if(st.announceText){an.hidden=false;$("#announceText").textContent=st.announceText;an.href=st.announceLink||"#news";}
-  else if(fc){an.hidden=false;$("#announceText").textContent=`Call for papers: ${fc.acronym||fc.title}`;an.href="#calls";}else an.hidden=true;
+  else an.hidden=true;
   const areas=Array.isArray(st.areas)&&st.areas.length?st.areas:[];
   $("#areaStrip").innerHTML=areas.slice(0,6).map(a=>`<span>${esc(a.title)}</span>`).join("");
   // suggestions
@@ -859,7 +859,7 @@ function renderSite(){
   else sug.push("How can I join the lab?");
   if(vis(S.publications).length)sug.push("Summarize the latest papers");
   if(!CHAT.length)$("#suggestions").innerHTML=sug.slice(0,4).map(s=>`<button class="suggest" type="button">${esc(s)}</button>`).join("");
-  renderFloaters();
+  $("#floaters").innerHTML="";
   // about
   if(st.aboutTitle)$("#aboutTitle").textContent=st.aboutTitle;
   $("#aboutText").textContent=st.mission||st.lede||"TrustNet.AI Lab studies how to make AI systems secure, private and dependable when they run across many devices, organizations and networks.";
@@ -985,7 +985,7 @@ function renderHead(){
 }
 
 function personCard(p){
-  return `<button class="person" data-person="${esc(p.id)}">${avatar(p)}<b>${esc(p.name)}</b><span class="pt" style="color:var(--accent);font-weight:600">${esc(ROLE1[p.role]||"Member")}</span>${p.title?`<span class="pt">${esc(trunc(p.title,70))}</span>`:""}${arr(p.interests).length?`<span class="tags">${arr(p.interests).slice(0,3).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</span>`:""}</button>`;
+  return `<button class="person" data-person="${esc(p.id)}">${avatar(p)}<b>${esc(p.name)}</b><span class="pt" style="color:var(--accent);font-weight:600">${esc(ROLE1[p.role]||"Member")}</span>${p.title?`<span class="pt">${esc(trunc(p.title,120))}</span>`:""}${arr(p.interests).length?`<span class="tags">${arr(p.interests).slice(0,3).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</span>`:""}</button>`;
 }
 function renderPeople(){
   const h=headPerson(), all=sortedPeople(vis(S.people)).filter(p=>!h||p.id!==h.id);
@@ -1278,21 +1278,122 @@ async function explainPaper(id){
   catch(e){tx.textContent=e.code==="not_granted"?"AI summaries need your permission to use Claude.":"The summary didn’t come through. Try again in a moment."}
 }
 
-/* ---------- hero network ---------- */
+/* ---------- hero background: network + federated learning + quantum ---------- */
 (function net(){
-  const cv=$("#net"),cx=cv.getContext("2d");let W,H,N=[],P=[],raf=0,vis_=true;
+  const cv=$("#net"),cx=cv.getContext("2d");let W,H,N=[],P=[],raf=0,vis_=true,FL=null,Q=null;
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function size(){const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
-    const n=Math.round(Math.min(70,W*H/16000));N=Array.from({length:n},(_,i)=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,r:Math.random()*1.6+1,t:Math.random()<.18}));P=[]}
-  function step(){
-    cx.clearRect(0,0,W,H);
+  const MINT="124,240,181",SKY="125,184,255",LIL="205,189,255",WHITE="255,255,255",AMB="242,196,107";
+  const rgba=(c,a)=>`rgba(${c},${a})`;
+  const T0=performance.now();
+  function size(){
+    const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+    const n=Math.round(Math.min(38,W*H/28000));
+    N=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,r:Math.random()*1.4+.8,t:Math.random()<.15}));P=[];
+    const wide=W>=900;
+    const R=wide?Math.min(150,W*.105,H*.21):Math.min(54,W*.14);
+    FL={x:wide?W*.15:W*.2,y:wide?H*.57:H*.91,R,a:wide?1:.38,K:wide?8:6};
+    Q={x:wide?W*.86:W*.8,y:wide?H*.5:H*.91,R:wide?R*.82:R*.8,a:wide?1:.38,wide};
+  }
+  function label(t,x,y,a,align){cx.font="500 10px 'JetBrains Mono',ui-monospace,monospace";cx.textAlign=align||"center";cx.fillStyle=rgba(WHITE,a);cx.fillText(t,x,y)}
+  function background(){
     const L=[];
     for(let i=0;i<N.length;i++){const a=N[i];if(!reduce){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1}
-      for(let j=i+1;j<N.length;j++){const b=N[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<140){L.push([a,b]);cx.strokeStyle=`rgba(191,224,255,${(1-d/140)*.22})`;cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}}
-    for(const a of N){cx.fillStyle=a.t?"rgba(124,240,181,.95)":"rgba(255,255,255,.6)";cx.beginPath();cx.arc(a.x,a.y,a.t?a.r+1:a.r,0,7);cx.fill();if(a.t){cx.fillStyle="rgba(124,240,181,.14)";cx.beginPath();cx.arc(a.x,a.y,a.r+6,0,7);cx.fill()}}
-    if(!reduce&&L.length&&P.length<9&&Math.random()<.06){const [a,b]=L[(Math.random()*L.length)|0];P.push({a,b,k:0})}
-    for(const p of P){p.k+=.012;const x=p.a.x+(p.b.x-p.a.x)*p.k,y=p.a.y+(p.b.y-p.a.y)*p.k;cx.fillStyle="rgba(124,240,181,.9)";cx.beginPath();cx.arc(x,y,2.2,0,7);cx.fill()}
+      for(let j=i+1;j<N.length;j++){const b=N[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){L.push([a,b]);cx.strokeStyle=rgba("191,224,255",(1-d/130)*.16);cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}}
+    for(const a of N){cx.fillStyle=a.t?rgba(MINT,.85):rgba(WHITE,.45);cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill()}
+    if(!reduce&&L.length&&P.length<6&&Math.random()<.04){const [a,b]=L[(Math.random()*L.length)|0];P.push({a,b,k:0})}
+    for(const p of P){p.k+=.012;cx.fillStyle=rgba(MINT,.8);cx.beginPath();cx.arc(p.a.x+(p.b.x-p.a.x)*p.k,p.a.y+(p.b.y-p.a.y)*p.k,1.8,0,7);cx.fill()}
     P=P.filter(p=>p.k<1);
+  }
+  /* federated learning: clients train locally, send updates, server aggregates, broadcasts the global model */
+  const ROUND=6.4;
+  function rnd(seed){const x=Math.sin(seed*999.13)*43758.5453;return x-Math.floor(x)}
+  function fl(t){
+    const {x:X,y:Y,R,a:A,K}=FL;const round=Math.floor(t/ROUND),p=(t%ROUND);
+    const rot=t*.05,excluded=Math.floor(rnd(round+1)*K);
+    const hub=R*.2;
+    // spokes + clients
+    const pts=[];
+    for(let i=0;i<K;i++){const ang=rot+i*2*Math.PI/K;pts.push([X+Math.cos(ang)*R,Y+Math.sin(ang)*R*.82])}
+    pts.forEach(([x,y],i)=>{
+      const ex=i===excluded;
+      cx.save();cx.setLineDash(ex?[3,5]:[]);cx.strokeStyle=rgba(ex?AMB:WHITE,(ex?.35:.16)*A);cx.lineWidth=1;cx.beginPath();cx.moveTo(X,Y);cx.lineTo(x,y);cx.stroke();cx.restore();
+    });
+    // packets
+    const up=p>2.2&&p<3.5?(p-2.2)/1.3:-1, down=p>4.3&&p<5.6?(p-4.3)/1.3:-1;
+    pts.forEach(([x,y],i)=>{
+      if(i===excluded)return;
+      if(up>=0){const e=Math.min(1,up*1.08-(i%3)*.04);if(e>0){const px=x+(X-x)*e,py=y+(Y-y)*e;cx.fillStyle=rgba(MINT,.95*A);cx.fillRect(px-2.6,py-2.6,5.2,5.2);cx.fillStyle=rgba(MINT,.18*A);cx.fillRect(px-6,py-6,12,12)}}
+      if(down>=0){const px=X+(x-X)*down,py=Y+(y-Y)*down;cx.fillStyle=rgba(SKY,.95*A);cx.beginPath();cx.arc(px,py,3,0,7);cx.fill()}
+    });
+    // clients with local-training progress rings
+    pts.forEach(([x,y],i)=>{
+      const ex=i===excluded,r=Math.max(6,R*.075);
+      cx.fillStyle=rgba("23,10,92",.55);cx.beginPath();cx.arc(x,y,r+3,0,7);cx.fill();
+      cx.strokeStyle=rgba(ex?AMB:WHITE,(ex?.6:.35)*A);cx.lineWidth=1.2;cx.beginPath();cx.arc(x,y,r,0,7);cx.stroke();
+      const train=p<2.2?p/2.2:1;
+      if(!ex){cx.strokeStyle=rgba(MINT,.9*A);cx.lineWidth=2;cx.beginPath();cx.arc(x,y,r+3,-Math.PI/2,-Math.PI/2+train*2*Math.PI);cx.stroke()}
+      // tiny device glyph
+      cx.fillStyle=rgba(ex?AMB:WHITE,(ex?.7:.75)*A);cx.fillRect(x-r*.35,y-r*.5,r*.7,r);cx.fillStyle=rgba("23,10,92",.9);cx.fillRect(x-r*.22,y-r*.35,r*.44,r*.6);
+      if(ex&&p<3.5){cx.strokeStyle=rgba(AMB,.8*A);cx.lineWidth=1.4;cx.beginPath();cx.moveTo(x+r*.9,y-r*1.4);cx.lineTo(x+r*1.6,y-r*.7);cx.moveTo(x+r*1.6,y-r*1.4);cx.lineTo(x+r*.9,y-r*.7);cx.stroke()}
+    });
+    // aggregation server
+    const agg=p>3.5&&p<4.4?(p-3.5)/.9:-1;
+    if(agg>=0){for(let k=0;k<2;k++){const g=(agg+k*.35)%1;cx.strokeStyle=rgba(LIL,(1-g)*.6*A);cx.lineWidth=1.5;cx.beginPath();cx.arc(X,Y,hub+g*R*.45,0,7);cx.stroke()}}
+    cx.save();cx.translate(X,Y);cx.rotate(t*.3);
+    cx.beginPath();for(let k=0;k<6;k++){const an=k*Math.PI/3;cx.lineTo(Math.cos(an)*hub,Math.sin(an)*hub)}cx.closePath();
+    cx.fillStyle=rgba("40,16,166",.75);cx.fill();cx.strokeStyle=rgba(agg>=0?LIL:SKY,(agg>=0?.95:.6)*A);cx.lineWidth=1.6;cx.stroke();cx.restore();
+    // tiny layered model glyph in the hub
+    for(let k=0;k<3;k++){cx.fillStyle=rgba(WHITE,(.5+k*.15)*A);cx.fillRect(X-hub*.45,Y-hub*.38+k*hub*.3,hub*.9,hub*.16)}
+    if(FL.a===1){
+      label(`FEDERATED LEARNING · ROUND ${round+1}`,X,Y-R*.82-22,.5*A);
+      const stage=p<2.2?"local training":p<3.5?"sending updates":p<4.4?"aggregating · FedAvg":p<5.6?"global model out":"next round";
+      label(stage,X,Y+R*.82+28,.42*A);
+    }
+  }
+  /* quantum: Bloch sphere with a precessing state, entangled pair and interference wave */
+  function q(t){
+    const {x:X,y:Y,R,a:A}=Q;const tilt=.3;
+    cx.save();
+    // sphere
+    const g=cx.createRadialGradient(X-R*.3,Y-R*.3,R*.1,X,Y,R);g.addColorStop(0,rgba(SKY,.14*A));g.addColorStop(1,rgba(LIL,.03*A));
+    cx.fillStyle=g;cx.beginPath();cx.arc(X,Y,R,0,7);cx.fill();
+    cx.strokeStyle=rgba(WHITE,.32*A);cx.lineWidth=1.2;cx.beginPath();cx.arc(X,Y,R,0,7);cx.stroke();
+    cx.strokeStyle=rgba(WHITE,.22*A);cx.beginPath();cx.ellipse(X,Y,R,R*tilt,0,0,7);cx.stroke();
+    for(let k=0;k<2;k++){const ph=t*.35+k*Math.PI/2;cx.strokeStyle=rgba(WHITE,.12*A);cx.beginPath();cx.ellipse(X,Y,Math.abs(Math.cos(ph))*R,R,0,0,7);cx.stroke()}
+    cx.setLineDash([2,4]);cx.strokeStyle=rgba(WHITE,.28*A);cx.beginPath();cx.moveTo(X,Y-R-8);cx.lineTo(X,Y+R+8);cx.stroke();cx.setLineDash([]);
+    if(Q.a===1){label("|0⟩",X,Y-R-14,.6*A);label("|1⟩",X,Y+R+22,.6*A)}
+    // state vector + trail
+    const st=s=>{const th=Math.PI/2+.95*Math.sin(s*.45),ph=s*.8;return[X+R*Math.sin(th)*Math.cos(ph),Y-R*Math.cos(th)+R*tilt*Math.sin(th)*Math.sin(ph),Math.sin(ph)]};
+    for(let k=36;k>0;k--){const [x,y]=st(t-k*.05);cx.fillStyle=rgba(MINT,(1-k/36)*.5*A);cx.beginPath();cx.arc(x,y,1.6,0,7);cx.fill()}
+    const [sx,sy,dep]=st(t);
+    cx.strokeStyle=rgba(MINT,.85*A);cx.lineWidth=1.8;cx.beginPath();cx.moveTo(X,Y);cx.lineTo(sx,sy);cx.stroke();
+    cx.fillStyle=rgba(MINT,.2*A);cx.beginPath();cx.arc(sx,sy,9,0,7);cx.fill();
+    cx.fillStyle=rgba(MINT,1*A);cx.beginPath();cx.arc(sx,sy,dep>0?4.2:3.2,0,7);cx.fill();
+    cx.fillStyle=rgba(WHITE,.7*A);cx.beginPath();cx.arc(X,Y,2,0,7);cx.fill();
+    // entangled qubit pair orbiting the sphere
+    for(let k=0;k<2;k++){
+      const an=t*.6+k*Math.PI,ox=X+Math.cos(an)*R*1.32,oy=Y+Math.sin(an)*R*.42;
+      const front=Math.sin(an)>0;
+      if(k===0){const an2=an+Math.PI,ox2=X+Math.cos(an2)*R*1.32,oy2=Y+Math.sin(an2)*R*.42;
+        cx.strokeStyle=rgba(LIL,.32*A);cx.lineWidth=1;cx.beginPath();
+        for(let s=0;s<=40;s++){const u=s/40,lx=ox+(ox2-ox)*u,ly=oy+(oy2-oy)*u,w=Math.sin(u*Math.PI*6-t*5)*6*Math.sin(u*Math.PI);
+          const nx=-(oy2-oy),ny=ox2-ox,nl=Math.hypot(nx,ny)||1;s?cx.lineTo(lx+nx/nl*w,ly+ny/nl*w):cx.moveTo(lx,ly)}cx.stroke()}
+      const flip=Math.sin(t*1.3)>0;const col=(k===0)===flip?MINT:SKY;
+      cx.fillStyle=rgba(col,(front?.95:.55)*A);cx.beginPath();cx.arc(ox,oy,front?5:3.6,0,7);cx.fill();
+      cx.strokeStyle=rgba(col,.35*A);cx.beginPath();cx.arc(ox,oy,(front?5:3.6)+4,0,7);cx.stroke();
+    }
+    // interference wave below
+    if(Q.wide){const wy=Y+R+48,ww=R*2.3;cx.lineWidth=1.3;
+      [[SKY,.4,1],[LIL,.35,1.6]].forEach(([c,al,f])=>{cx.strokeStyle=rgba(c,al*A);cx.beginPath();for(let s=0;s<=80;s++){const u=s/80,x=X-ww/2+u*ww,env=Math.sin(u*Math.PI);const y=wy+Math.sin(u*14*f-t*2.2*f)*10*env;s?cx.lineTo(x,y):cx.moveTo(x,y)}cx.stroke()});
+      cx.strokeStyle=rgba(MINT,.7*A);cx.lineWidth=1.6;cx.beginPath();for(let s=0;s<=80;s++){const u=s/80,x=X-ww/2+u*ww,env=Math.sin(u*Math.PI);const y=wy+(Math.sin(u*14-t*2.2)+Math.sin(u*22.4-t*3.52))*7*env;s?cx.lineTo(x,y):cx.moveTo(x,y)}cx.stroke();
+      label("QUANTUM · |ψ⟩ = α|0⟩ + β|1⟩",X,Y-R-34,.5*A);
+    }
+    cx.restore();
+  }
+  function step(){
+    const t=reduce?2.9:(performance.now()-T0)/1000;
+    cx.clearRect(0,0,W,H);
+    background();fl(t);q(t);
     if(!reduce&&vis_)raf=requestAnimationFrame(step);
   }
   size();step();
