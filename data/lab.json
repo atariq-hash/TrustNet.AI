@@ -35,18 +35,21 @@
     "linkedin": "https://www.linkedin.com/in/asadullah-tariq/",
     "mission": "TrustNet.AI Lab studies how to make AI secure, private and dependable when it is trained and deployed across many devices, organizations and networks. Our work spans trustworthy federated learning, edge computing, post-quantum and blockchain security for vehicular networks, quantum machine learning, causal AI and physical AI.",
     "name": "TrustNet.AI Lab",
-    "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ"
+    "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ",
+    "email": "a.tariq@ieee.org",
+    "joinText": "We welcome research collaborations and applications for research positions. To apply or to collaborate, email a.tariq@ieee.org with your CV and a short note on your research interests.",
+    "ctaText": "For collaborations, research positions or partnerships, email a.tariq@ieee.org."
   },
   "people": [
     {
       "id": "asadullah-tariq",
-      "bio": "Asadullah Tariq is a Postdoctoral Researcher at the College of Technological Innovation, Zayed University, and a Visiting Assistant Professor at Canadian University Dubai. He completed his PhD in Computing and Informatics at the United Arab Emirates University, where his research focused on frameworks for trustworthiness in federated learning. His work covers trustworthy AI, edge AI, wireless communication and quantum machine learning, and he reviews for leading journals including IEEE Communications Surveys and Tutorials.",
+      "bio": "Asadullah Tariq is an Assistant Professor of AI and Robotics at New Uzbekistan University and a Postdoctoral Researcher at the College of Technological Innovation, Zayed University. He completed his PhD in Computing and Informatics at the United Arab Emirates University (2022 to 2025) with a thesis on a trustworthy federated learning framework for secure, efficient and quality-aware distributed AI, and was a visiting researcher at Queen Mary University of London. His research covers trustworthy and explainable AI, federated learning for wireless networks, quantum machine learning, edge computing, agentic AI and physical AI for communication networks.",
       "interests": [
         "Trustworthy AI",
         "Federated learning",
+        "Quantum ML",
         "Edge AI",
-        "Wireless communication",
-        "Quantum ML"
+        "Physical AI"
       ],
       "linkedin": "https://www.linkedin.com/in/asadullah-tariq/",
       "name": "Dr. Asadullah Tariq",
@@ -55,8 +58,21 @@
       "photo": "assets/uploads/asadullah-tariq.jpg",
       "role": "head",
       "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ",
-      "title": "Postdoctoral Researcher, Zayed University; Visiting Assistant Professor, Canadian University Dubai",
-      "website": "https://sites.google.com/view/asadullah-tariq/home"
+      "title": "Assistant Professor, AI and Robotics, New Uzbekistan University; Postdoctoral Researcher, Zayed University",
+      "website": "https://sites.google.com/view/asadullah-tariq/home",
+      "email": "a.tariq@ieee.org",
+      "awards": [
+        "IEEE ComSoc Travel Grant, IEEE INFOCOM 2025",
+        "IEEE VTS Travel Grant, IEEE VTC-Fall 2025",
+        "Best Paper Award, EAI SecureComm 2024",
+        "Best Paper Award, IEEE IIT 2023",
+        "ACM/IEEE Student Travel Grant, SEC 2023"
+      ],
+      "education": [
+        "PhD Computing and Informatics, United Arab Emirates University, 2025",
+        "MS Computer Science, FAST-NUCES, Pakistan, 2019",
+        "BS Computer Science, PUCIT, University of the Punjab, 2015"
+      ]
     },
     {
       "id": "mohamed-adel-serhani",
@@ -64,8 +80,8 @@
       "role": "collab",
       "order": 1,
       "photo": "assets/uploads/serhani.jpg",
-      "title": "Professor, College of Computing and Informatics, University of Sharjah",
-      "bio": "Mohamed Adel Serhani is a Professor at the College of Computing and Informatics, University of Sharjah, where he also serves as Deputy Director of the International Relations Office. Before joining Sharjah, he was Assistant Dean for Research and Graduate Studies at the College of Information Technology, United Arab Emirates University (2018 to 2022), where he also directed the PhD and Master's programs. His research covers federated learning, cloud computing for data-intensive e-health applications, SLA enforcement in cloud data centres, the big data value chain, cloud federation and monitoring, and non-invasive smart health.",
+      "title": "Professor and Dean, College of Computing and Informatics, University of Sharjah",
+      "bio": "Mohamed Adel Serhani is Professor and Dean of the College of Computing and Informatics at the University of Sharjah. Before joining Sharjah, he was Assistant Dean for Research and Graduate Studies at the College of Information Technology, United Arab Emirates University (2018 to 2022), where he also directed the PhD and Master's programs. His research covers federated learning, cloud computing for data-intensive e-health applications, SLA enforcement in cloud data centres, the big data value chain, cloud federation and monitoring, and non-invasive smart health.",
       "education": [
         "PhD Computer Engineering, Concordia University, Canada, 2006",
         "MSc Software Engineering, University of Montreal, Canada, 2002",
@@ -196,7 +212,9 @@
       "tags": [
         "Federated learning",
         "Healthcare"
-      ]
+      ],
+      "doi": "10.1109/JIOT.2025.3541844",
+      "status": "published"
     },
     {
       "id": "j02",
@@ -210,21 +228,25 @@
       "tags": [
         "Federated learning",
         "Explainable AI"
-      ]
+      ],
+      "doi": "10.1109/TCE.2025.3543209",
+      "status": "published"
     },
     {
       "id": "j03",
       "title": "AI-Driven Lightweight and Trustworthy Federated Learning Framework for Decision-Making in Resource-Constrained Consumer Edge-IoT",
       "authors": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka",
       "venue": "IEEE Transactions on Consumer Electronics",
-      "year": 2025,
+      "year": 2026,
       "type": "journal",
       "badge": "Q1 · IF 10.9",
       "featured": false,
       "tags": [
         "Federated learning",
         "Edge AI"
-      ]
+      ],
+      "doi": "10.1109/TCE.2025.3628207",
+      "status": "published"
     },
     {
       "id": "j04",
@@ -239,7 +261,9 @@
         "Federated learning",
         "Fog computing"
       ],
-      "url": "https://ieeexplore.ieee.org/abstract/document/11015934/"
+      "url": "https://ieeexplore.ieee.org/abstract/document/11015934/",
+      "doi": "10.1109/TCE.2025.3573851",
+      "status": "published"
     },
     {
       "id": "j05",
@@ -254,7 +278,9 @@
         "Post-quantum",
         "Blockchain",
         "V2X"
-      ]
+      ],
+      "doi": "10.1109/TITS.2025.3614888",
+      "status": "published"
     },
     {
       "id": "j06",
@@ -282,7 +308,9 @@
       "tags": [
         "Federated learning",
         "Survey"
-      ]
+      ],
+      "doi": "10.1109/OJCOMS.2024.3438264",
+      "status": "published"
     },
     {
       "id": "j08",
@@ -296,7 +324,9 @@
       "tags": [
         "Federated learning",
         "Edge computing"
-      ]
+      ],
+      "doi": "10.1109/OJCOMS.2023.3313257",
+      "status": "published"
     },
     {
       "id": "j09",
@@ -310,7 +340,9 @@
       "tags": [
         "LLMs",
         "Vehicular networks"
-      ]
+      ],
+      "doi": "10.1038/s41598-026-39791-y",
+      "status": "published"
     },
     {
       "id": "j10",
@@ -338,7 +370,9 @@
       "tags": [
         "Federated learning",
         "Differential privacy"
-      ]
+      ],
+      "doi": "10.1109/ACCESS.2023.3325396",
+      "status": "published"
     },
     {
       "id": "j12",
@@ -357,11 +391,11 @@
     {
       "id": "c01",
       "title": "FairMoE-FL: A Communication-Efficient and Fair Federated Mixture-of-Experts Framework",
-      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Ahmed Abdolamein, Irfanud Din, Ikbal Taleb",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Ahmed M. Abdelmoniem, Irfanud Din, Ikbal Taleb",
       "venue": "IEEE International Conference on Communications (ICC 2026)",
       "year": 2026,
       "type": "conference",
-      "badge": "CORE A",
+      "badge": "Ranked A",
       "featured": false
     },
     {
@@ -371,7 +405,7 @@
       "venue": "IEEE Wireless Communications and Networking Conference (WCNC 2026)",
       "year": 2026,
       "type": "conference",
-      "badge": "",
+      "badge": "Ranked A",
       "featured": false
     },
     {
@@ -391,7 +425,7 @@
       "venue": "IEEE International Conference on Communications (ICC 2026)",
       "year": 2026,
       "type": "conference",
-      "badge": "CORE A",
+      "badge": "Ranked A",
       "featured": false
     },
     {
@@ -401,7 +435,7 @@
       "venue": "IEEE International Conference on Communications (ICC 2026)",
       "year": 2026,
       "type": "conference",
-      "badge": "CORE A",
+      "badge": "Ranked A",
       "featured": false
     },
     {
@@ -411,7 +445,7 @@
       "venue": "IEEE International Conference on Consumer Electronics (ICCE 2026)",
       "year": 2026,
       "type": "conference",
-      "badge": "",
+      "badge": "Ranked B",
       "featured": false
     },
     {
@@ -431,7 +465,7 @@
       "venue": "IEEE International Conference on Communications (ICC 2025)",
       "year": 2025,
       "type": "conference",
-      "badge": "CORE A",
+      "badge": "Ranked A",
       "featured": false
     },
     {
@@ -451,7 +485,7 @@
       "venue": "International Wireless Communications and Mobile Computing Conference (IWCMC 2025)",
       "year": 2025,
       "type": "conference",
-      "badge": "",
+      "badge": "Ranked B",
       "featured": false
     },
     {
@@ -461,7 +495,7 @@
       "venue": "International Wireless Communications and Mobile Computing Conference (IWCMC 2025)",
       "year": 2025,
       "type": "conference",
-      "badge": "",
+      "badge": "Ranked B",
       "featured": false
     },
     {
@@ -481,7 +515,7 @@
       "venue": "International Wireless Communications and Mobile Computing Conference (IWCMC 2024)",
       "year": 2024,
       "type": "conference",
-      "badge": "",
+      "badge": "Ranked B",
       "featured": false
     },
     {
@@ -522,7 +556,7 @@
       "venue": "International Conference on Big-data Service and Intelligent Computation (BDSIC 2023)",
       "year": 2023,
       "type": "conference",
-      "badge": "",
+      "badge": "Best Paper Presentation Award",
       "featured": false
     },
     {
@@ -532,7 +566,118 @@
       "venue": "International Conference on Innovations in Information Technology (IIT 2023)",
       "year": 2023,
       "type": "conference",
-      "badge": "",
+      "badge": "Best Paper Award",
+      "featured": false
+    },
+    {
+      "id": "j13",
+      "title": "FedCROME-DT: Counterfactual Expert Routing for Robust and Explainable Federated Reinforcement Learning in Autonomous IoT Systems",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Ikbal Taleb, Irfanud Din",
+      "venue": "IEEE Internet of Things Journal",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1 · IF 8.9",
+      "status": "accepted",
+      "featured": true,
+      "tags": [
+        "Federated RL",
+        "Explainable AI"
+      ]
+    },
+    {
+      "id": "j14",
+      "title": "PP-FedDT: Securing Digital Twin Federated Learning Against Persistent and Adaptive Poisoning Attacks",
+      "authors": "Ikbal Taleb, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din, et al.",
+      "venue": "IEEE Transactions on Consumer Electronics",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1 · IF 10.9",
+      "status": "accepted",
+      "featured": false,
+      "tags": [
+        "Digital twins",
+        "Security"
+      ]
+    },
+    {
+      "id": "j15",
+      "title": "AoI-Aware Agentic Federated Mixture-of-Digital-Twin Experts for 6G Vehicular Edge Intelligence",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Ikbal Taleb, Tariq Qayyum, Irfanud Din",
+      "venue": "IEEE Open Journal of the Communications Society",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1",
+      "status": "accepted",
+      "featured": true,
+      "tags": [
+        "6G",
+        "Mixture of experts",
+        "Digital twins"
+      ]
+    },
+    {
+      "id": "j16",
+      "title": "Empowering Healthcare with Cyber-Physical System: A Systematic Literature Review",
+      "authors": "Heba M. Khater, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Salem Barka, Khaled A. Shuaib, Asadullah Tariq, Mohammad Khayat",
+      "venue": "IEEE Access",
+      "year": 2024,
+      "type": "journal",
+      "badge": "Q1 · IF 3.9",
+      "status": "published",
+      "doi": "10.1109/ACCESS.2024.3407376",
+      "featured": false,
+      "tags": [
+        "Healthcare",
+        "Cyber-physical systems"
+      ]
+    },
+    {
+      "id": "j17",
+      "title": "Hybridization and Artificial Intelligence in Optimizing University Examination Timetabling Problem: A Systematic Review",
+      "authors": "A. Ghaffar, Irfanud Din, Asadullah Tariq, M. H. Zafar",
+      "venue": "Review of Education",
+      "year": 2025,
+      "type": "journal",
+      "badge": "IF 3.4",
+      "status": "published",
+      "doi": "10.1002/rev3.70071",
+      "featured": false,
+      "tags": [
+        "Optimization",
+        "Education"
+      ]
+    },
+    {
+      "id": "c19",
+      "title": "Learning When to Communicate: Communication-Aware Physical AI with Digital Twins and Federated Mixture-of-Experts",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Tariq Qayyum, Ikbal Taleb",
+      "venue": "IEEE Global Communications Conference (GLOBECOM 2026), Macau, China",
+      "year": 2026,
+      "type": "conference",
+      "badge": "Ranked A",
+      "status": "accepted",
+      "featured": true
+    },
+    {
+      "id": "s01",
+      "title": "Lightweight TinyML-Enhanced Task Offloading in VANETs for Next-Generation Intelligent Transportation Systems",
+      "authors": "Muhammad Ali, Tariq Qayyum, Asadullah Tariq, et al.",
+      "venue": "IEEE Open Journal of the Communications Society",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1",
+      "status": "accepted",
+      "featured": false
+    },
+    {
+      "id": "s02",
+      "title": "A Performance-Optimized V2V Task Offloading Framework for Real-Time Vehicular Communication",
+      "authors": "Tariq Qayyum, Asadullah Tariq, Ikbal Taleb, Mohamed Adel Serhani",
+      "venue": "IEEE Open Journal of the Communications Society",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1",
+      "status": "accepted",
       "featured": false
     }
   ],
@@ -550,10 +695,97 @@
         "Research integrity",
         "Citations"
       ],
-      "title": "CiTrue: every reference, verified"
+      "title": "CiTrue: every reference, verified",
+      "image": "assets/uploads/citrue-cover.jpg"
+    },
+    {
+      "id": "cvd-ai",
+      "title": "AI-Driven Framework for Smart Cardiovascular Disease Monitoring and Management",
+      "status": "active",
+      "summary": "Trustworthy, privacy-preserving AI for monitoring and managing cardiovascular diseases.",
+      "description": "A Zayed University funded project developing an AI-driven framework for smart monitoring and management of cardiovascular diseases (CVDs), building on the lab’s work in federated learning, digital twins and explainable edge intelligence for healthcare.",
+      "start": "2025",
+      "end": "2027",
+      "funding": "Zayed University, AED 299,750",
+      "tags": [
+        "Healthcare",
+        "Federated learning",
+        "Digital twins"
+      ],
+      "members": [
+        "asadullah-tariq"
+      ]
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "id": "n-globecom-2026",
+      "title": "Paper accepted at IEEE GLOBECOM 2026",
+      "kind": "news",
+      "date": "2026-11-21",
+      "summary": "Our paper “Learning When to Communicate: Communication-Aware Physical AI with Digital Twins and Federated Mixture-of-Experts” has been accepted at IEEE GLOBECOM 2026 in Macau, China.",
+      "body": "Asadullah Tariq, Mohamed Adel Serhani, Tariq Qayyum and Ikbal Taleb show how physical AI agents can learn when it is worth communicating, combining digital twins with a federated mixture-of-experts to cut communication while keeping decisions accurate.",
+      "tags": [
+        "GLOBECOM",
+        "Physical AI"
+      ]
+    },
+    {
+      "id": "n-flaire-cfp",
+      "title": "Call for papers: FLAIRE-NextG workshop at IWCMC 2027, Barcelona",
+      "kind": "news",
+      "date": "2026-11-20",
+      "summary": "We are organising FLAIRE-NextG, a workshop on federated learning for AI-native, interpretable and resilient edge intelligence in NextG wireless networks, at IWCMC 2027 in Barcelona. Submissions close 15 January 2027.",
+      "body": "Accepted papers will be submitted to IEEE Xplore, selected papers will be considered for five journal special issues, and there will be a best paper award.\n\nSee Workshops and special issues on this page for topics, dates and the submission link.",
+      "link": "https://iwcmc.net/2027/files/workshops/FLAIRE-NextG_IWCMC2027_CFP1.pdf",
+      "tags": [
+        "IWCMC 2027",
+        "Workshop"
+      ]
+    },
+    {
+      "id": "n-journal-acceptances",
+      "title": "Three journal papers accepted in IEEE IoT Journal, IEEE TCE and IEEE OJ-COMS",
+      "kind": "news",
+      "date": "2026-11-19",
+      "summary": "FedCROME-DT (IEEE Internet of Things Journal), PP-FedDT (IEEE Transactions on Consumer Electronics) and an AoI-aware agentic federated mixture-of-digital-twin experts framework for 6G vehicular edge intelligence (IEEE Open Journal of the Communications Society) have been accepted.",
+      "tags": [
+        "Journals"
+      ]
+    },
+    {
+      "id": "n-newuu",
+      "title": "Asadullah Tariq joins New Uzbekistan University as Assistant Professor",
+      "kind": "news",
+      "date": "2026-08-01",
+      "summary": "Dr. Asadullah Tariq has joined New Uzbekistan University in Tashkent as Assistant Professor of AI and Robotics, while continuing his postdoctoral research at Zayed University.",
+      "tags": [
+        "People"
+      ]
+    },
+    {
+      "id": "n-zu-grant",
+      "title": "Zayed University grant for AI-driven cardiovascular disease monitoring",
+      "kind": "news",
+      "date": "2025-11-01",
+      "summary": "A Zayed University research grant of AED 299,750 will fund an AI-driven framework for smart monitoring and management of cardiovascular diseases from November 2025 to November 2027.",
+      "tags": [
+        "Grant",
+        "Healthcare"
+      ]
+    },
+    {
+      "id": "n-ojcoms-two",
+      "title": "Two papers accepted in IEEE Open Journal of the Communications Society",
+      "kind": "news",
+      "date": "2026-11-21",
+      "summary": "“Lightweight TinyML-Enhanced Task Offloading in VANETs for Next-Generation Intelligent Transportation Systems” and “A Performance-Optimized V2V Task Offloading Framework for Real-Time Vehicular Communication” have been accepted in IEEE OJ-COMS.",
+      "tags": [
+        "Journals",
+        "Vehicular networks"
+      ]
+    }
+  ],
   "events": [],
   "vacancies": [],
   "partners": [
@@ -648,5 +880,60 @@
       "order": 10
     }
   ],
-  "calls": []
+  "calls": [
+    {
+      "id": "flaire-nextg-2027",
+      "title": "Federated Learning for AI-native, Interpretable, and Resilient Edge Intelligence in NextG Wireless Networks",
+      "acronym": "FLAIRE-NextG",
+      "kind": "workshop",
+      "status": "",
+      "host": "IWCMC 2027 · 23rd International Wireless Communications & Mobile Computing Conference",
+      "location": "Barcelona, Spain",
+      "deadline": "2027-01-15",
+      "notification": "2027-03-30",
+      "eventDate": "2027-06-13",
+      "summary": "FLAIRE-NextG brings together research on federated learning that is AI-native, interpretable and resilient for edge intelligence in NextG and 6G wireless networks, from causal and physics-informed FL to secure, auditable and trustworthy aggregation. IWCMC 2027 takes place 13 to 18 June 2027 in Barcelona, Spain.",
+      "guidelines": "- Paper submission deadline: 15 January 2027\n- Notification of acceptance: 30 March 2027\n- Camera-ready submission: 30 April 2027\n- Accepted papers will be submitted for inclusion in IEEE Xplore, subject to meeting its scope and quality requirements.\n- Selected papers will be considered for publication in five journal special issues.\n- There will be a best paper award.",
+      "topics": [
+        "Federated causal discovery across non-IID NextG network nodes",
+        "Counterfactual “what-if” reasoning for 6G beamforming and resource allocation",
+        "Physical AI and physics-informed FL for NextG networks",
+        "Network digital twins for FL client selection and validation",
+        "Federated world models of radio environments and user mobility",
+        "Federated mixture-of-experts for NextG networks",
+        "LLM agents for intent-based networking and Open RAN control",
+        "Federated parameter-efficient fine-tuning (LoRA) of telecom foundation models",
+        "Multi-agent coordination and trust across operators and network slices",
+        "One-shot and few-shot FL for intermittently connected devices",
+        "Split and federated split learning across devices, MEC and cloud",
+        "AoI-aware, over-the-air, semantic and event-triggered FL over 6G",
+        "Byzantine, backdoor and poisoning attacks; robust edge aggregation",
+        "Membership, reconstruction and model-inversion attacks in wireless FL",
+        "Post-quantum secure aggregation and physical-layer security for FL",
+        "Blockchain-based decentralized trust for FL across operators and vehicles",
+        "Explainable federated models for handover, scheduling and anomaly detection",
+        "ICN/NDN-enabled trustworthy FL with named, signed model updates",
+        "Auditable FL: zero-knowledge proofs and model provenance",
+        "Contribution evaluation, fair incentives and federated unlearning",
+        "6G testbeds, datasets, simulators and benchmarks for trustworthy FL"
+      ],
+      "organizers": [
+        "Asadullah Tariq, New Uzbekistan University, Uzbekistan & Zayed University, UAE",
+        "Ahmed M. A. Sayed, Queen Mary University of London, UK",
+        "Rana Asif Rehman, Muscat University, Oman",
+        "Ikbal Taleb, Zayed University, UAE",
+        "Asad Waqar Malik, Mississippi State University, USA",
+        "Tariq Qayyum, United Arab Emirates University, UAE",
+        "Junlin Zhao, The Chinese University of Hong Kong (Shenzhen), China"
+      ],
+      "link": "https://iwcmc.net/2027/index.php",
+      "submitLink": "https://conferences.sparcly.ai/IWCMC2027",
+      "featured": true,
+      "banner": "assets/uploads/flaire-banner.jpg",
+      "cfp": {
+        "id": "assets/uploads/FLAIRE-NextG_IWCMC2027_CFP.pdf",
+        "name": "FLAIRE-NextG_IWCMC2027_CFP.pdf"
+      }
+    }
+  ]
 }

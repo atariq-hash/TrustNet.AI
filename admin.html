@@ -339,6 +339,9 @@ h3{color:var(--ink)}
 
 /* floating chat window */
 .herocta{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2rem}
+.herocalls{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.9rem}
+.herocalls:empty{display:none}
+.herocalls .btn svg{width:15px;height:15px}
 .btn.lg{padding:.85rem 1.45rem;font-size:1.02rem}
 .btn.lg svg{width:19px;height:19px}
 .chatfab{position:fixed;right:calc(1.2rem + env(safe-area-inset-right,0px));bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));z-index:60;display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.15rem .55rem .55rem;border-radius:999px;border:0;cursor:pointer;color:#fff;font-weight:600;font-size:.96rem;background:linear-gradient(135deg,#5B3DF5,#3F86F4);box-shadow:0 18px 40px -14px rgba(40,16,166,.75);transition:transform .15s}
@@ -629,6 +632,7 @@ dialog.drawer[open]{animation:slidein .25s cubic-bezier(.2,.8,.2,1)}
       <button class="btn light lg" type="button" data-openchat><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="askLabel">Ask TrustNet AI</span></button>
       <a class="btn glass lg" href="#research">Explore our research</a>
     </div>
+    <div class="herocalls" id="heroCalls"></div>
     <div class="areastrip" id="areaStrip"></div>
   </div>
 </header>
@@ -888,8 +892,10 @@ function renderSite(){
   if(st.lede)$("#heroLede").textContent=st.lede;
   const an=$("#announce");
   const fc=sortedCalls(vis(S.calls)).find(c=>c.featured&&callOpen(c));
-  if(st.announceText){an.hidden=false;$("#announceText").textContent=st.announceText;an.href=st.announceLink||"#news";}
-  else an.hidden=true;
+  const ann=[];if(st.announceText)ann.push({t:st.announceText,h:st.announceLink||"#news"});
+  sortedPosts(vis(S.posts)).filter(p=>p.kind!=="read").slice(0,5).forEach(p=>ann.push({t:p.title,post:p.id}));
+  an.hidden=true;clearInterval(ANN.timer);
+  $("#heroCalls").innerHTML=fc?`<a class="btn glass sm" href="#calls">${ic("megaphone")}${esc(fc.acronym||"Our workshop")}${fc.host?` · ${esc(fc.host.split("·")[0].trim())}`:""}</a>${fc.cfp||fc.link?`<a class="btn glass sm" href="${esc(fc.cfp?img(fc.cfp):fc.link)}" target="_blank" rel="noopener">${ic("down")}Call for papers</a>`:""}`:"";
   const areas=Array.isArray(st.areas)&&st.areas.length?st.areas:[];
   $("#areaStrip").innerHTML=areas.slice(0,6).map(a=>`<span>${esc(a.title)}</span>`).join("");
   // suggestions
@@ -912,6 +918,11 @@ function renderSite(){
   renderPartners();renderHead();renderPeople();renderProjects();renderPubs();renderNews();renderEvents();renderCalls();renderVacancies();renderContact();
 }
 
+const ANN={list:[],i:0,timer:null};
+function showAnn(fade){const an=$("#announce"),L=ANN.list;if(!L.length)return;const a=L[ANN.i%L.length];const set=()=>{$("#announceText").textContent=a.t;an.href=a.post?"#news":a.h;an.dataset.post=a.post||"";an.style.opacity=1};
+  if(fade&&!matchMedia("(prefers-reduced-motion: reduce)").matches){an.style.transition="opacity .35s";an.style.opacity=0;setTimeout(set,350)}else set();
+  clearInterval(ANN.timer);if(L.length>1)ANN.timer=setInterval(()=>{ANN.i++;showAnn(true)},5200)}
+$("#announce").addEventListener("click",e=>{const id=e.currentTarget.dataset.post;if(id){e.preventDefault();openPost(id)}});
 function renderFloaters(){
   const out=[];
   const pub=sortedPubs(vis(S.publications)).find(p=>p.featured)||sortedPubs(vis(S.publications))[0];
@@ -1064,7 +1075,7 @@ function bibtex(p){
   return `@${t}{${last}${p.year||""}${w},\n${f.map(([k,v])=>`  ${k} = {${v}}`).join(",\n")}\n}`;
 }
 function pubItem(p){const open=UI.open.has(p.id);const link=p.doi?`https://doi.org/${String(p.doi).replace(/^https?:\/\/(dx\.)?doi\.org\//,"")}`:p.url;
-  return `<li class="pub ${open?"open":""}" data-pid="${esc(p.id)}"><button class="pub-head" aria-expanded="${open}" data-pubtoggle="${esc(p.id)}"><span class="yr">${esc(p.year||"–")}</span><span><span class="pub-title">${esc(p.title)}</span><span class="pub-meta">${esc(trunc(p.authors,160))}${p.venue?` · <i>${esc(p.venue)}</i>`:""}</span></span>${p.badge?`<span class="badge">${esc(p.badge)}</span>`:`<span class="tag">${esc(PUBT[p.type||"other"]||"Paper")}</span>`}</button>
+  return `<li class="pub ${open?"open":""}" data-pid="${esc(p.id)}"><button class="pub-head" aria-expanded="${open}" data-pubtoggle="${esc(p.id)}"><span class="yr">${esc(p.year||"–")}</span><span><span class="pub-title">${esc(p.title)}</span><span class="pub-meta">${esc(trunc(p.authors,160))}${p.venue?` · <i>${esc(p.venue)}</i>`:""}${p.status==="accepted"?` · <b style="color:var(--mint);font-weight:600">Accepted</b>`:p.status==="submitted"?` · <b style="color:var(--warn);font-weight:600">Under review</b>`:""}</span></span>${p.badge?`<span class="badge">${esc(p.badge)}</span>`:`<span class="tag">${esc(PUBT[p.type||"other"]||"Paper")}</span>`}</button>
   ${open?`<div class="pub-body">${p.abstract?`<p>${esc(p.abstract)}</p>`:""}<div class="pub-actions">${link?`<a class="btn sm" href="${esc(link)}" target="_blank" rel="noopener">${ic("out")}Read paper</a>`:""}${p.pdf?`<a class="btn sm" href="${esc(img(p.pdf))}" target="_blank" rel="noopener">${ic("doc")}PDF</a>`:""}<button class="btn sm" data-bib="${esc(p.id)}">${ic("copy")}Copy BibTeX</button>${sampleCap?`<button class="btn sm" data-explain="${esc(p.id)}" style="color:var(--ai)">${ic("spark")}Explain simply</button>`:""}</div><div id="ex-${esc(p.id)}"></div></div>`:""}</li>`}
 function renderPubs(){
   const all=sortedPubs(vis(S.publications));
@@ -1077,7 +1088,9 @@ function renderPubs(){
   const list=all.filter(pubMatches);
   if(!list.length){out.innerHTML=`<li class="empty">${all.length?"No papers match. Try a shorter search or another year.":"Publications will be listed here."}</li>`;return}
   const tier=p=>/IEEE Transactions|IEEE Internet of Things Journal|IEEE Journal/.test(p.venue||"")?0:/^IEEE/.test(p.venue||"")?1:2;
-  const groups=[["Journal articles",list.filter(p=>p.type==="journal").sort((a,b)=>tier(a)-tier(b)||(b.year||0)-(a.year||0))],["Conference papers",list.filter(p=>p.type==="conference")],["Other publications",list.filter(p=>p.type!=="journal"&&p.type!=="conference")]];
+  const sub=list.filter(p=>p.status==="submitted"),pubd=list.filter(p=>p.status!=="submitted");
+  const acc=p=>p.status==="accepted"?1:0,latest=(a,b)=>acc(b)-acc(a)||(b.year||0)-(a.year||0)||tier(a)-tier(b)||String(a.title).localeCompare(String(b.title));
+  const groups=[["Journal articles",pubd.filter(p=>p.type==="journal").sort(latest)],["Conference papers",pubd.filter(p=>p.type==="conference").sort(latest)],["Other publications",pubd.filter(p=>p.type!=="journal"&&p.type!=="conference")],["Submitted papers · under review",sub]];
   out.innerHTML=groups.filter(g=>g[1].length).map(([n,g])=>`<li class="pubgroup">${n} <span>${g.length}</span></li>`+g.map(pubItem).join("")).join("");
 }
 
@@ -1113,7 +1126,7 @@ function renderVacancies(){
   const out=$("#vacOut");
   if(!S.ready){out.innerHTML=`<div class="loading" style="grid-column:1/-1"><span class="spin"></span></div>`;return}
   const mail=st.email;
-  if(!list.length){out.innerHTML=`<div class="empty" style="grid-column:1/-1">There are no open positions right now. ${mail?`Strong candidates can still write to <a href="mailto:${esc(mail)}">${esc(mail)}</a> with a CV and a short research statement.`:""}</div>`;return}
+  if(!list.length){out.innerHTML=mail?`<div class="empty" style="grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:.9rem"><span>Interested in a research position or a collaboration? Email <a href="mailto:${esc(mail)}">${esc(mail)}</a> with your CV and a short note on your research interests.</span><span style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center"><a class="btn primary sm" href="mailto:${esc(mail)}?subject=${encodeURIComponent("Research position application")}">${ic("mail")}Apply for a research position</a><a class="btn sm" href="mailto:${esc(mail)}?subject=${encodeURIComponent("Research collaboration")}">${ic("mail")}Propose a collaboration</a></span></div>`:`<div class="empty" style="grid-column:1/-1">Open positions will be listed here.</div>`;return}
   out.innerHTML=list.map(v=>{const to=v.applyEmail||mail;const subj=encodeURIComponent(`Application: ${v.title}`);return `<article class="vac"><div class="chips"><span class="tag ok">Open</span><span class="tag acc">${esc(v.kind||"Position")}</span>${v.deadline?`<span class="tag warn">Apply by ${esc(fmtDate(v.deadline))}</span>`:""}</div><h3>${esc(v.title)}</h3><p>${esc(v.summary||"")}</p>${arr(v.requirements).length?`<ul>${arr(v.requirements).slice(0,5).map(r=>`<li>${esc(r)}</li>`).join("")}</ul>`:""}<div class="row">${to?`<a class="btn primary sm" href="mailto:${esc(to)}?subject=${subj}">${ic("mail")}Apply by email</a>`:""}${v.link?`<a class="btn sm" href="${esc(v.link)}" target="_blank" rel="noopener">Full details${ic("out")}</a>`:""}</div></article>`}).join("");
 }
 
@@ -1323,6 +1336,7 @@ async function explainPaper(id){
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const MINT="124,240,181",SKY="125,184,255",LIL="205,189,255",WHITE="255,255,255",AMB="242,196,107",DEEP="23,10,92";
   const rgba=(c,a)=>`rgba(${c},${Math.max(0,a)})`;
+  function glow(x,y,r,c,a){if(a<=.01||r<=0)return;const g=cx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba(c,a));g.addColorStop(.45,rgba(c,a*.35));g.addColorStop(1,rgba(c,0));const o=cx.globalCompositeOperation;cx.globalCompositeOperation="lighter";cx.fillStyle=g;cx.beginPath();cx.arc(x,y,r,0,7);cx.fill();cx.globalCompositeOperation=o}
   const T0=performance.now();const now=()=>reduce?3:(performance.now()-T0)/1000;
   const M={x:-999,y:-999,in:false,lx:-999,ly:-999,lt:0};
   const S3={fl:{off:0,dx:0,dy:0,hover:0},nn:{dx:0,dy:0,hover:0,fire:-9,out:null},q:{dx:0,dy:0,hover:0,meas:null}};
@@ -1331,7 +1345,7 @@ async function explainPaper(id){
     const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
     wide=W>=900;
     const n=Math.round(Math.min(40,W*H/26000));
-    N=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,r:Math.random()*1.4+.8,t:Math.random()<.15}));P=[];
+    N=Array.from({length:n},()=>{const z=Math.random()<.45?.45:1;return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.16*z,vy:(Math.random()-.5)*.16*z,r:(Math.random()*1.3+.8)*z,t:Math.random()<.15,z,tw:Math.random()*6.3}});P=[];
     const R=wide?Math.min(96,W*.07,H*.13):Math.min(44,W*.12);
     FL={bx:wide?W*.15:W*.2,by:wide?H*.66:H*.91,R,a:wide?1:.4,ph:0,ax:wide?46:8,ay:wide?34:6};
     NN={bx:wide?W*.13:W*.5,by:wide?H*.29:H*.06,w:wide?Math.min(150,W*.105):0,h:wide?Math.min(82,H*.11):0,a:wide?1:0,ph:1.7,ax:40,ay:26};
@@ -1343,15 +1357,16 @@ async function explainPaper(id){
     return[sc.bx+st.dx+drift[0]+par[0],sc.by+st.dy+drift[1]+par[1]];
   }
   function label(t,x,y,a,align,size){cx.font=`500 ${size||9}px 'JetBrains Mono',ui-monospace,monospace`;cx.textAlign=align||"center";cx.fillStyle=rgba(WHITE,a);cx.fillText(t,x,y)}
-  function background(){
+  function background(t){
     const L=[];
     for(let i=0;i<N.length;i++){const a=N[i];if(!reduce){a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;
         if(M.in){const dx=a.x-M.x,dy=a.y-M.y,d=Math.hypot(dx,dy);if(d<90&&d>0){a.x+=dx/d*.6;a.y+=dy/d*.6}}}
-      for(let j=i+1;j<N.length;j++){const b=N[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){L.push([a,b]);cx.strokeStyle=rgba("191,224,255",(1-d/130)*.14);cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}}
+      for(let j=i+1;j<N.length;j++){const b=N[j];if(b.z!==a.z)continue;const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){L.push([a,b]);cx.strokeStyle=rgba("191,224,255",(1-d/130)*.14*a.z);cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}}}
     if(M.in){for(const a of N){const d=Math.hypot(a.x-M.x,a.y-M.y);if(d<160){cx.strokeStyle=rgba(MINT,(1-d/160)*.4);cx.lineWidth=1;cx.beginPath();cx.moveTo(M.x,M.y);cx.lineTo(a.x,a.y);cx.stroke()}}}
-    for(const a of N){cx.fillStyle=a.t?rgba(MINT,.8):rgba(WHITE,.42);cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill()}
+    for(const a of N){const tw=.65+.35*Math.sin(t*1.6+a.tw);cx.fillStyle=a.t?rgba(MINT,.85*tw*a.z):rgba(WHITE,.5*tw*a.z);cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill();if(a.t&&a.z===1)glow(a.x,a.y,9,MINT,.25*tw)}
+    if(M.in)glow(M.x,M.y,46,MINT,.16);
     if(!reduce&&L.length&&P.length<6&&Math.random()<.04){const [a,b]=L[(Math.random()*L.length)|0];P.push({a,b,k:0})}
-    for(const p of P){p.k+=.012;cx.fillStyle=rgba(MINT,.75);cx.beginPath();cx.arc(p.a.x+(p.b.x-p.a.x)*p.k,p.a.y+(p.b.y-p.a.y)*p.k,1.7,0,7);cx.fill()}
+    for(const p of P){p.k+=.012;const px=p.a.x+(p.b.x-p.a.x)*p.k,py=p.a.y+(p.b.y-p.a.y)*p.k;cx.fillStyle=rgba(MINT,.85);cx.beginPath();cx.arc(px,py,1.6,0,7);cx.fill();glow(px,py,7,MINT,.3)}
     P=P.filter(p=>p.k<1);
   }
   /* entangled qubit pairs born where the cursor touches the background */
@@ -1363,7 +1378,7 @@ async function explainPaper(id){
       cx.strokeStyle=rgba(LIL,.55*fade);cx.lineWidth=1;cx.beginPath();
       for(let s=0;s<=24;s++){const u=s/24,lx=ax+(bx-ax)*u,ly=ay+(by-ay)*u,w=Math.sin(u*Math.PI*4-t*9)*4*Math.sin(u*Math.PI);s?cx.lineTo(lx-sa*w,ly+ca*w):cx.moveTo(lx,ly)}cx.stroke();
       const flip=(Math.sin((t-e.t0)*7)>0)!==e.spin;
-      [[ax,ay,flip?MINT:SKY],[bx,by,flip?SKY:MINT]].forEach(([x,y,c])=>{cx.fillStyle=rgba(c,.22*fade);cx.beginPath();cx.arc(x,y,7,0,7);cx.fill();cx.fillStyle=rgba(c,.95*fade);cx.beginPath();cx.arc(x,y,2.8,0,7);cx.fill()});
+      [[ax,ay,flip?MINT:SKY],[bx,by,flip?SKY:MINT]].forEach(([x,y,c])=>{glow(x,y,13,c,.45*fade);cx.fillStyle=rgba(c,.95*fade);cx.beginPath();cx.arc(x,y,2.8,0,7);cx.fill()});
       if(k<.25){cx.strokeStyle=rgba(WHITE,(1-k/.25)*.5);cx.beginPath();cx.arc(e.x,e.y,4+k*40,0,7);cx.stroke()}
     }
   }
@@ -1380,18 +1395,19 @@ async function explainPaper(id){
     for(let i=0;i<=60;i++){const u=i/60,p=bez(a,c,b,u);if(Math.hypot(p.x-a.x,p.y-a.y)<a.r)u0=u}
     for(let i=60;i>=0;i--){const u=i/60,p=bez(a,c,b,u);if(Math.hypot(p.x-b.x,p.y-b.y)<b.r)u1=u}
     return{a,b,c,u0,u1}}
-  const LINKDEF=[["nn","fl","local model",SKY],["fl","q","quantum-secure aggregation",LIL],["q","nn","quantum features",MINT]];
+  const LINKDEF=[["nn","fl","local model",SKY],["fl","q","quantum-secure aggregation",LIL],["q","nn","quantum features",MINT]];const SCOL={nn:SKY,fl:MINT,q:LIL};
   function links(t){
     if(!wide)return;
     for(const [ka,kb,name,col] of LINKDEF){const L=seg(ka,kb,t);if(L.u1-L.u0<.1)continue;const hl=Math.max(S3[ka].hover,S3[kb].hover);
-      cx.save();cx.setLineDash([3,6]);cx.lineDashOffset=-t*14;cx.strokeStyle=rgba(col,.3+hl*.3);cx.lineWidth=1.2;cx.beginPath();
+      const pa=bez(L.a,L.c,L.b,L.u0),pb=bez(L.a,L.c,L.b,L.u1),lg=cx.createLinearGradient(pa.x,pa.y,pb.x,pb.y);lg.addColorStop(0,rgba(SCOL[ka],.42+hl*.3));lg.addColorStop(.5,rgba(WHITE,.16+hl*.2));lg.addColorStop(1,rgba(SCOL[kb],.42+hl*.3));
+      cx.save();cx.setLineDash([2,7]);cx.lineDashOffset=-t*16;cx.strokeStyle=lg;cx.lineWidth=1.3;cx.lineCap="round";cx.beginPath();
       for(let i=0;i<=48;i++){const u=L.u0+(L.u1-L.u0)*i/48,p=bez(L.a,L.c,L.b,u);i?cx.lineTo(p.x,p.y):cx.moveTo(p.x,p.y)}cx.stroke();cx.restore();
-      for(let k=0;k<4;k++){const u=L.u0+(L.u1-L.u0)*((t*.12+k/4)%1),p=bez(L.a,L.c,L.b,u);cx.fillStyle=rgba(col,.65+hl*.3);cx.beginPath();cx.arc(p.x,p.y,2,0,7);cx.fill()}
-      const m=bez(L.a,L.c,L.b,(L.u0+L.u1)/2);label(name,m.x,m.y-7,.38+hl*.4,"center",8.5)}
+      for(let k=0;k<3;k++){const f=(t*.1+k/3)%1,u=L.u0+(L.u1-L.u0)*f,p=bez(L.a,L.c,L.b,u),fa=Math.sin(f*Math.PI);cx.fillStyle=rgba(col,(.7+hl*.3)*fa);cx.beginPath();cx.arc(p.x,p.y,1.8,0,7);cx.fill();glow(p.x,p.y,8,col,.35*fa)}
+      if(hl>.03){const m=bez(L.a,L.c,L.b,(L.u0+L.u1)/2);label(name,m.x,m.y-7,.8*hl,"center",8.5)}}
     for(let i=PU.length-1;i>=0;i--){const pu=PU[i],e=(t-pu.t0)/1.3;if(e>=1){PU.splice(i,1);arrive(pu.b,t);continue}
       const L=seg(pu.a,pu.b,t),u=L.u0+(L.u1-L.u0)*e,p=bez(L.a,L.c,L.b,u);
       for(let k=6;k>=0;k--){const q2=bez(L.a,L.c,L.b,Math.max(L.u0,u-k*.018));cx.fillStyle=rgba(pu.c,(1-k/7)*.5);cx.beginPath();cx.arc(q2.x,q2.y,2.2+(6-k)*.22,0,7);cx.fill()}
-      cx.fillStyle=rgba(pu.c,.25);cx.beginPath();cx.arc(p.x,p.y,9,0,7);cx.fill();cx.fillStyle=rgba(WHITE,.95);cx.beginPath();cx.arc(p.x,p.y,3,0,7);cx.fill()}
+      glow(p.x,p.y,22,pu.c,.55);cx.fillStyle=rgba(WHITE,.95);cx.beginPath();cx.arc(p.x,p.y,2.8,0,7);cx.fill()}
   }
   function arrive(k,t){if(k==="nn")runNN(t);if(k==="q"){S3.q.flash=t;const a=anchor("q",t);spawnPair(a.x,a.y,t,true)}if(k==="fl")S3.fl.flash=t}
   function runNN(t){S3.nn.fire=t;const a=Math.random(),top=.8+Math.random()*.17,rest=1-top;S3.nn.out=a<.6?[top,rest*.7,rest*.3]:a<.85?[rest*.6,top,rest*.4]:[rest*.3,rest*.7,top];setTimeout(()=>pulse("nn","fl",now(),SKY),1400)}
@@ -1418,27 +1434,28 @@ async function explainPaper(id){
     const ph=(s,e)=>p>=s&&p<e?(p-s)/(e-s):-1;
     const up1=ph(2,3),up2=ph(3.6,4.4),dn1=ph(5,5.8),dn2=ph(5.8,6.5);
     devs.forEach(([x,y,i],k)=>{if(k===bad)return;const ed=edges[i];
-      if(up1>=0){const [px,py]=lerp([x,y],ed,up1);cx.fillStyle=rgba(MINT,.95*A);cx.fillRect(px-2,py-2,4,4)}
-      if(dn2>=0){const [px,py]=lerp(ed,[x,y],dn2);cx.fillStyle=rgba(SKY,.95*A);cx.beginPath();cx.arc(px,py,2.2,0,7);cx.fill()}});
-    edges.forEach(ed=>{if(up2>=0){const [px,py]=lerp(ed,[X,Y],up2);cx.fillStyle=rgba(LIL,.95*A);cx.fillRect(px-2.4,py-2.4,4.8,4.8)}
-      if(dn1>=0){const [px,py]=lerp([X,Y],ed,dn1);cx.fillStyle=rgba(SKY,.95*A);cx.beginPath();cx.arc(px,py,2.6,0,7);cx.fill()}});
+      if(up1>=0){const [px,py]=lerp([x,y],ed,up1);glow(px,py,8,MINT,.45);cx.fillStyle=rgba(MINT,.95*A);cx.fillRect(px-1.8,py-1.8,3.6,3.6)}
+      if(dn2>=0){const [px,py]=lerp(ed,[x,y],dn2);glow(px,py,8,SKY,.45);cx.fillStyle=rgba(SKY,.95*A);cx.beginPath();cx.arc(px,py,2,0,7);cx.fill()}});
+    edges.forEach(ed=>{if(up2>=0){const [px,py]=lerp(ed,[X,Y],up2);glow(px,py,10,LIL,.5);cx.fillStyle=rgba(LIL,.95*A);cx.fillRect(px-2.2,py-2.2,4.4,4.4)}
+      if(dn1>=0){const [px,py]=lerp([X,Y],ed,dn1);glow(px,py,10,SKY,.5);cx.fillStyle=rgba(SKY,.95*A);cx.beginPath();cx.arc(px,py,2.4,0,7);cx.fill()}});
     devs.forEach(([x,y,i,j],k)=>{const isBad=k===bad,r=Math.max(5,R*.08);
       cx.fillStyle=rgba(DEEP,.6);cx.beginPath();cx.arc(x,y,r+2.5,0,7);cx.fill();
       cx.strokeStyle=rgba(isBad?AMB:WHITE,(isBad?.6:.3)*A);cx.lineWidth=1;cx.beginPath();cx.arc(x,y,r+.5,0,7);cx.stroke();
       if(!isBad){const tr=p<2?p/2:1;cx.strokeStyle=rgba(MINT,.85*A);cx.lineWidth=1.6;cx.beginPath();cx.arc(x,y,r+2.5,-Math.PI/2,-Math.PI/2+tr*2*Math.PI);cx.stroke()}
       glyph((i+j)%3,x,y,r,isBad?AMB:WHITE,A0)});
     const ea=ph(3,3.6);
-    edges.forEach(([ex,ey])=>{const s=Math.max(5,R*.09);if(ea>=0){cx.strokeStyle=rgba(LIL,(1-ea)*.7);cx.lineWidth=1.2;cx.beginPath();cx.arc(ex,ey,s+ea*12,0,7);cx.stroke()}
+    edges.forEach(([ex,ey])=>{const s=Math.max(5,R*.09);glow(ex,ey,s*3,LIL,.18+(ea>=0?.3*(1-ea):0));if(ea>=0){cx.strokeStyle=rgba(LIL,(1-ea)*.7);cx.lineWidth=1.2;cx.beginPath();cx.arc(ex,ey,s+ea*12,0,7);cx.stroke()}
       cx.fillStyle=rgba("40,16,166",.85);cx.strokeStyle=rgba(LIL,.75*A);cx.lineWidth=1.2;cx.beginPath();cx.roundRect?cx.roundRect(ex-s,ey-s,s*2,s*2,3):cx.rect(ex-s,ey-s,s*2,s*2);cx.fill();cx.stroke();
       for(let k=0;k<3;k++){cx.fillStyle=rgba(WHITE,.6*A0);cx.fillRect(ex-s*.6,ey-s*.55+k*s*.45,s*1.2,s*.2)}});
     const ca=ph(4.4,5),hub=Math.max(8,R*.16);
     if(ca>=0){for(let k=0;k<2;k++){const g=(ca+k*.4)%1;cx.strokeStyle=rgba(SKY,(1-g)*.6);cx.lineWidth=1.3;cx.beginPath();cx.arc(X,Y,hub+g*R*.4,0,7);cx.stroke()}}
     if(st.flash)ring(X,Y,hub,st.flash,t,SKY);
+    glow(X,Y,hub*3.2,ca>=0?SKY:LIL,ca>=0?.55:.25);
     cx.save();cx.translate(X,Y);cx.rotate(t*.3);cx.beginPath();for(let k=0;k<6;k++){const an=k*Math.PI/3;cx.lineTo(Math.cos(an)*hub,Math.sin(an)*hub)}cx.closePath();
     cx.fillStyle=rgba("40,16,166",.8);cx.fill();cx.strokeStyle=rgba(ca>=0?SKY:LIL,(ca>=0?.95:.65)*A);cx.lineWidth=1.4;cx.stroke();cx.restore();
     cx.fillStyle=rgba(WHITE,.8*A0);cx.beginPath();cx.arc(X-hub*.18,Y+hub*.08,hub*.32,0,7);cx.arc(X+hub*.2,Y+hub*.1,hub*.26,0,7);cx.arc(X,Y-hub*.12,hub*.34,0,7);cx.fill();
-    if(wide){label(`EDGE FEDERATED LEARNING · ROUND ${round+1}`,X,Y-R*.86-14,.5);
-      label(p<2?"devices train locally":p<3?"devices → edge":p<3.6?"edge aggregates":p<4.4?"edge → cloud":p<5?"cloud aggregates":p<6.5?"global model → devices":"next round",X,Y+R*.86+20,.42);
+    if(wide){label(`EDGE FEDERATED LEARNING · ROUND ${round+1}`,X,Y-R*.86-14,.4+st.hover*.4);
+      if(st.hover>.02)label(p<2?"devices train locally":p<3?"devices → edge":p<3.6?"edge aggregates":p<4.4?"edge → cloud":p<5?"cloud aggregates":p<6.5?"global model → devices":"next round",X,Y+R*.86+20,.7*st.hover);
       if(st.hover>.02)label("click: next round · drag to move",X,Y+R*.86+33,.7*st.hover)}
   }
   /* neural network */
@@ -1455,10 +1472,10 @@ async function explainPaper(id){
         if(act>0&&act<1){cx.fillStyle=rgba(MINT,.7*wv);cx.beginPath();cx.arc(a[0]+(b[0]-a[0])*act,a[1]+(b[1]-a[1])*act,1.2,0,7);cx.fill()}}))}
     nodes.forEach((col,l)=>col.forEach(([x,y])=>{const lit=Math.max(0,1-Math.abs(head-l)*1.4),last=l===LAYERS.length-1;
       cx.fillStyle=rgba(DEEP,.7);cx.beginPath();cx.arc(x,y,4.6,0,7);cx.fill();cx.strokeStyle=rgba(last?SKY:WHITE,.45+lit*.5);cx.lineWidth=1;cx.beginPath();cx.arc(x,y,3.8,0,7);cx.stroke();
-      if(lit>.05){cx.fillStyle=rgba(last?SKY:MINT,lit*.9);cx.beginPath();cx.arc(x,y,2.4,0,7);cx.fill()}}));
+      if(lit>.05){glow(x,y,11,last?SKY:MINT,.5*lit);cx.fillStyle=rgba(last?SKY:MINT,lit*.9);cx.beginPath();cx.arc(x,y,2.4,0,7);cx.fill()}}));
     const outs=st.out||[.91,.06,.03],cls=["trusted","suspicious","malicious"];
     if(head>LAYERS.length-1.2)nodes[LAYERS.length-1].forEach(([x,y],i)=>{cx.fillStyle=rgba(i===0?MINT:i===1?AMB:"255,157,147",.8);cx.fillRect(x+9,y-2,outs[i]*32,4);label(`${cls[i]} ${(outs[i]*100|0)}%`,x+9,y-5,.5,"left",8)});
-    label("NEURAL NETWORK · INFERENCE",X,Y-h/2-12,.5);
+    label("NEURAL NETWORK · INFERENCE",X,Y-h/2-12,.4+st.hover*.4);
     if(st.hover>.02)label("click: run · drag to move",X,Y+h/2+18,.7*st.hover);
   }
   /* quantum: small Bloch sphere with an entangled pair */
@@ -1466,7 +1483,7 @@ async function explainPaper(id){
     const st=S3.q,[X,Y]=pos(Q,st,t),{R,a:A0}=Q,A=A0*(1+st.hover*.25),tilt=.3;Q.x=X;Q.y=Y;
     const g=cx.createRadialGradient(X-R*.3,Y-R*.3,R*.1,X,Y,R);g.addColorStop(0,rgba(SKY,(.14+st.hover*.08)*A0));g.addColorStop(1,rgba(LIL,.03*A0));
     cx.fillStyle=g;cx.beginPath();cx.arc(X,Y,R,0,7);cx.fill();
-    cx.strokeStyle=rgba(WHITE,.32*A);cx.lineWidth=1.1;cx.beginPath();cx.arc(X,Y,R,0,7);cx.stroke();
+    glow(X,Y,R*1.5,LIL,.12+st.hover*.08);const rim=cx.createLinearGradient(X-R,Y-R,X+R,Y+R);rim.addColorStop(0,rgba(WHITE,.55*A));rim.addColorStop(.5,rgba(SKY,.25*A));rim.addColorStop(1,rgba(LIL,.45*A));cx.strokeStyle=rim;cx.lineWidth=1.2;cx.beginPath();cx.arc(X,Y,R,0,7);cx.stroke();
     cx.strokeStyle=rgba(WHITE,.2*A);cx.beginPath();cx.ellipse(X,Y,R,R*tilt,0,0,7);cx.stroke();
     for(let k=0;k<2;k++){const ph=t*.35+k*Math.PI/2;cx.strokeStyle=rgba(WHITE,.11*A);cx.beginPath();cx.ellipse(X,Y,Math.abs(Math.cos(ph))*R,R,0,0,7);cx.stroke()}
     cx.setLineDash([2,4]);cx.strokeStyle=rgba(WHITE,.26*A);cx.beginPath();cx.moveTo(X,Y-R-6);cx.lineTo(X,Y+R+6);cx.stroke();cx.setLineDash([]);
@@ -1476,15 +1493,15 @@ async function explainPaper(id){
     if(!mix)for(let k=30;k>0;k--){const [x,y]=st8(t-k*.05);cx.fillStyle=rgba(MINT,(1-k/30)*.5*A0);cx.beginPath();cx.arc(x,y,1.3,0,7);cx.fill()}
     const [sx,sy,dep]=st8(t),col=mix>.5?(pole?LIL:SKY):MINT;
     cx.strokeStyle=rgba(col,.9*A0);cx.lineWidth=1.6;cx.beginPath();cx.moveTo(X,Y);cx.lineTo(sx,sy);cx.stroke();
-    cx.fillStyle=rgba(col,.22*A0);cx.beginPath();cx.arc(sx,sy,7+mix*5,0,7);cx.fill();cx.fillStyle=rgba(col,A0);cx.beginPath();cx.arc(sx,sy,dep>0?3.4:2.6,0,7);cx.fill();
+    glow(sx,sy,16+mix*10,col,.6*A0);cx.fillStyle=rgba(col,A0);cx.beginPath();cx.arc(sx,sy,dep>0?3.4:2.6,0,7);cx.fill();
     if(st.meas&&t-st.meas.t0<.9){const e=(t-st.meas.t0)/.9;cx.strokeStyle=rgba(WHITE,(1-e)*.7);cx.lineWidth=1.6;cx.beginPath();cx.arc(X,Y,R*(.3+e*1.1),0,7);cx.stroke()}
     if(st.flash)ring(X,Y,R,st.flash,t,LIL,20);
     for(let k=0;k<2;k++){const an=t*.6+k*Math.PI,ox=X+Math.cos(an)*R*1.35,oy=Y+Math.sin(an)*R*.42,front=Math.sin(an)>0;
       if(k===0){const an2=an+Math.PI,ox2=X+Math.cos(an2)*R*1.35,oy2=Y+Math.sin(an2)*R*.42;cx.strokeStyle=rgba(LIL,.32*A0);cx.lineWidth=1;cx.beginPath();
         for(let s=0;s<=36;s++){const u=s/36,lx=ox+(ox2-ox)*u,ly=oy+(oy2-oy)*u,w=Math.sin(u*Math.PI*6-t*5)*4*Math.sin(u*Math.PI),nx=-(oy2-oy),ny=ox2-ox,nl=Math.hypot(nx,ny)||1;s?cx.lineTo(lx+nx/nl*w,ly+ny/nl*w):cx.moveTo(lx,ly)}cx.stroke()}
       const flip=mix>.5?pole===1:Math.sin(t*1.3)>0,c2=(k===0)===flip?MINT:SKY;
-      cx.fillStyle=rgba(c2,(front?.95:.55)*A0);cx.beginPath();cx.arc(ox,oy,front?4:3,0,7);cx.fill();cx.strokeStyle=rgba(c2,.35*A0);cx.beginPath();cx.arc(ox,oy,(front?4:3)+3,0,7);cx.stroke()}
-    if(wide){label(mix>.5?`MEASURED · |ψ⟩ → |${pole}⟩`:"QUANTUM · |ψ⟩ = α|0⟩ + β|1⟩",X,Y-R-24,mix>.5?.85:.5);
+      glow(ox,oy,front?12:8,c2,(front?.45:.25)*A0);cx.fillStyle=rgba(c2,(front?.95:.55)*A0);cx.beginPath();cx.arc(ox,oy,front?4:3,0,7);cx.fill();cx.strokeStyle=rgba(c2,.35*A0);cx.beginPath();cx.arc(ox,oy,(front?4:3)+3,0,7);cx.stroke()}
+    if(wide){label(mix>.5?`MEASURED · |ψ⟩ → |${pole}⟩`:"QUANTUM · |ψ⟩ = α|0⟩ + β|1⟩",X,Y-R-24,mix>.5?.85:.4+st.hover*.4);
       if(st.hover>.02)label("click: measure · drag to move",X,Y+R+32,.7*st.hover)}
   }
   /* interaction */
@@ -1514,7 +1531,7 @@ async function explainPaper(id){
   function step(){
     const t=now();
     for(const k of ["fl","nn","q"]){const st=S3[k],tg=(hov===k||drag?.k===k)?1:0;st.hover+=(tg-st.hover)*(reduce?1:.12)}
-    cx.clearRect(0,0,W,H);background();links(t);nn(t);fl(t);q(t);entangle(t);
+    cx.clearRect(0,0,W,H);background(t);links(t);nn(t);fl(t);q(t);entangle(t);
     if(!reduce&&vis_)raf=requestAnimationFrame(step);
   }
   size();step();
@@ -1548,7 +1565,7 @@ const SCHEMA={
     title:x=>x.name,sub:x=>[ROLE1[x.role],x.title].filter(Boolean).join(" · "),sort:sortedPeople},
   publications:{label:"Publications",one:"publication",icon:"doc",fields:[
     ["title","Title","text",{wide:1,req:1}],["authors","Authors","textarea",{wide:1,rows:2,help:"As printed, separated by commas"}],
-    ["venue","Journal or conference","text",{wide:1}],["badge","Ranking or impact factor","text",{ph:"Q1 · IF 10.9, or CORE A*"}],["year","Year","number"],["type","Type","select",{opts:PUBTYPES}],
+    ["venue","Journal or conference","text",{wide:1}],["badge","Ranking or impact factor","text",{ph:"Q1 · IF 10.9, or Ranked A"}],["status","Status","select",{opts:[["published","Published"],["accepted","Accepted, in press"],["submitted","Submitted, under review"]]}],["year","Year","number"],["type","Type","select",{opts:PUBTYPES}],
     ["doi","DOI","text",{ph:"10.1109/…"}],["url","Link","url"],["abstract","Abstract","textarea",{wide:1}],
     ["tags","Topics","tags",{wide:1}],["pdf","PDF file","file",{wide:1}],["featured","Feature this paper","check"],["hidden","Hide from the website","check"]],
     title:x=>x.title,sub:x=>[x.venue,x.year].filter(Boolean).join(", "),sort:sortedPubs},
