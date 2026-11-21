@@ -40,7 +40,7 @@
   "people": [
     {
       "id": "asadullah-tariq",
-      "bio": "Asadullah Tariq leads TrustNet.AI Lab. He completed his PhD in Computer Science at the United Arab Emirates University, where his research focused on frameworks for trustworthiness in federated learning. His work covers trustworthy AI, edge AI, wireless communication and quantum machine learning, and he reviews for leading journals including IEEE Communications Surveys and Tutorials.",
+      "bio": "Asadullah Tariq is a Postdoctoral Researcher at the College of Technological Innovation, Zayed University, and a Visiting Assistant Professor at Canadian University Dubai. He completed his PhD in Computing and Informatics at the United Arab Emirates University, where his research focused on frameworks for trustworthiness in federated learning. His work covers trustworthy AI, edge AI, wireless communication and quantum machine learning, and he reviews for leading journals including IEEE Communications Surveys and Tutorials.",
       "interests": [
         "Trustworthy AI",
         "Federated learning",
@@ -51,7 +51,7 @@
       "linkedin": "https://www.linkedin.com/in/asadullah-tariq/",
       "name": "Dr. Asadullah Tariq",
       "orcid": "0000-0002-2791-2347",
-      "order": 1,
+      "order": 2,
       "photo": "assets/uploads/asadullah-tariq.jpg",
       "role": "head",
       "scholar": "https://scholar.google.com/citations?hl=en&user=CrXu7QUAAAAJ",
@@ -83,7 +83,7 @@
       "id": "irfan-ud-din",
       "name": "Prof. Irfan-ud Din",
       "role": "collab",
-      "order": 2,
+      "order": 5,
       "photo": "assets/uploads/irfan-ud-din.jpg",
       "title": "Professor and Head of Department of Computer Science, New Uzbekistan University",
       "email": "irfan@newuu.uz",
@@ -145,6 +145,41 @@
         "Internet of Vehicles",
         "Edge computing",
         "Task offloading"
+      ]
+    },
+    {
+      "id": "ikbal-taleb",
+      "name": "Dr. Ikbal Taleb",
+      "role": "collab",
+      "order": 6,
+      "photo": "assets/uploads/ikbal-taleb.jpg",
+      "title": "Assistant Professor, College of Technological Innovation, Zayed University",
+      "website": "https://works.bepress.com/ikbal-taleb",
+      "bio": "Ikbal Taleb is an Assistant Professor at the College of Technological Innovation, Zayed University, in Abu Dhabi. He holds a PhD in Information and Systems Engineering from Concordia University and an MSc in Software Engineering from the University of Montreal, Canada. His research covers big data quality assessment and analytics, data-driven health applications, misinformation detection, and trustworthy and quantum federated learning.",
+      "education": [
+        "PhD Information and Systems Engineering, Concordia University, Canada",
+        "MSc Software Engineering, University of Montreal, Canada"
+      ],
+      "interests": [
+        "Big data quality",
+        "Data analytics",
+        "Federated learning",
+        "Misinformation detection"
+      ]
+    },
+    {
+      "id": "waqas-haseeb",
+      "name": "Dr. Muhammad Waqas Haseeb",
+      "role": "collab",
+      "order": 7,
+      "photo": "assets/uploads/waqas-haseeb.jpg",
+      "title": "Postdoctoral Researcher, Lund University and United Arab Emirates University",
+      "bio": "Muhammad Waqas Haseeb is a Postdoctoral Researcher at Lund University and the United Arab Emirates University. His research brings together quantum mechanics and machine learning, including physics-informed neural networks, quantum state diffusion and open quantum systems, and quantum machine learning. His recent work includes a study of vibration-assisted electron tunnelling in COVID-19 infection using quantum state diffusion, and co-authored papers on quantum federated learning and quantum-enhanced convolutional neural networks for image classification.",
+      "interests": [
+        "Quantum mechanics",
+        "Physics-informed neural networks",
+        "Quantum machine learning",
+        "Open quantum systems"
       ]
     }
   ],
