@@ -185,175 +185,355 @@
   ],
   "publications": [
     {
-      "id": "p01",
-      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Tariq Qayyum, Ezedin Salem Barka",
+      "id": "j01",
+      "title": "Meta-XPFL: An Explainable and Personalized Federated Meta-Learning Framework for Privacy-Aware IoMT",
+      "authors": "Mohamed Adel Serhani, Asadullah Tariq, Tariq Qayyum, Ikbal Taleb, Irfanud Din, Zouheir Trabelsi",
+      "venue": "IEEE Internet of Things Journal",
+      "year": 2025,
+      "type": "journal",
+      "badge": "Q1 · IF 8.9",
       "featured": true,
       "tags": [
         "Federated learning",
-        "Encryption"
-      ],
-      "title": "Dynamic Edge Computing with MARL and AI-Driven Selective Homomorphic Encryption for Trustworthy Federated Learning",
-      "type": "conference",
-      "venue": "IEEE INFOCOM Workshops",
-      "year": 2025
+        "Healthcare"
+      ]
     },
     {
-      "id": "p02",
-      "authors": "Asadullah Tariq, Tariq Qayyum, Mohamed Adel Serhani, Farag M. Sallabi, Ikbal Taleb, Ezedin Salem Barka",
-      "tags": [
-        "Federated learning"
-      ],
-      "title": "Enhancing Communication Efficiency in FL with Adaptive Gradient Quantization and Communication Frequency Optimization",
-      "type": "conference",
-      "venue": "IEEE ICC",
-      "year": 2025
-    },
-    {
-      "id": "p03",
-      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Asad Waqar Malik, Irfanud Din",
+      "id": "j02",
+      "title": "Leveraging Game Theory and XAI for Data Quality-Driven Sample and Client Selection in Trustworthy Split Federated Learning",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka",
+      "venue": "IEEE Transactions on Consumer Electronics",
+      "year": 2025,
+      "type": "journal",
+      "badge": "Q1 · IF 10.9",
       "featured": true,
+      "tags": [
+        "Federated learning",
+        "Explainable AI"
+      ]
+    },
+    {
+      "id": "j03",
+      "title": "AI-Driven Lightweight and Trustworthy Federated Learning Framework for Decision-Making in Resource-Constrained Consumer Edge-IoT",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka",
+      "venue": "IEEE Transactions on Consumer Electronics",
+      "year": 2025,
+      "type": "journal",
+      "badge": "Q1 · IF 10.9",
+      "featured": false,
+      "tags": [
+        "Federated learning",
+        "Edge AI"
+      ]
+    },
+    {
+      "id": "j04",
+      "title": "DHFL: Decentralized Hierarchical Federated Learning With Dynamic Global Aggregation for Privacy-Aware Fog Computing",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Asad Waqar Malik, Irfanud Din",
+      "venue": "IEEE Transactions on Consumer Electronics",
+      "year": 2025,
+      "type": "journal",
+      "badge": "Q1 · IF 10.9",
+      "featured": false,
       "tags": [
         "Federated learning",
         "Fog computing"
       ],
-      "title": "DHFL: Decentralized Hierarchical Federated Learning With Dynamic Global Aggregation for Privacy-Aware Fog Computing",
+      "url": "https://ieeexplore.ieee.org/abstract/document/11015934/"
+    },
+    {
+      "id": "j05",
+      "title": "A Quantum-Resilient Sharded Blockchain Framework for Secure V2X and Federated Learning in Intelligent Transportation Systems",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din",
+      "venue": "IEEE Transactions on Intelligent Transportation Systems",
+      "year": 2025,
       "type": "journal",
-      "venue": "IEEE Transactions on Consumer Electronics 71(2)",
-      "year": 2025
-    },
-    {
-      "id": "p04",
-      "authors": "Tariq Qayyum, Asad Waqar Malik, Asadullah Tariq, Mohamed Adel Serhani, Zouheir Trabelsi",
-      "tags": [
-        "Post-quantum",
-        "Vehicular networks"
-      ],
-      "title": "Optimizing Post-Quantum Secure Communication via DL-Based KEM Selection in VANETs",
-      "type": "conference",
-      "venue": "IEEE VTC2025-Fall",
-      "year": 2025
-    },
-    {
-      "id": "p05",
-      "authors": "Muhammad Ali, Usman Nazir, Mubashar Mushtaq, Faizad Ullah, Tariq Qayyum, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din",
-      "tags": [
-        "Edge computing",
-        "Vehicular networks"
-      ],
-      "title": "Deep Learning-Based Task Offloading for Efficient and Reliable Computation in High-Mobility Vehicular Networks",
-      "type": "conference",
-      "venue": "IWCMC",
-      "year": 2025
-    },
-    {
-      "id": "p06",
-      "authors": "Asadullah Tariq, Tariq Qayyum, Saed Alrabaee, Mohamed Adel Serhani",
-      "tags": [
-        "Blockchain",
-        "Cybersecurity"
-      ],
-      "title": "Blockchain and Distributed Ledger Technologies for Cyberthreat Intelligence Sharing",
-      "type": "preprint",
-      "url": "https://arxiv.org/abs/2504.02537",
-      "venue": "arXiv:2504.02537",
-      "year": 2025
-    },
-    {
-      "id": "p07",
-      "authors": "Tariq Qayyum, Asadullah Tariq, Muhammad Ali, Mohamed Adel Serhani, Zouheir Trabelsi, Maite López-Sánchez",
-      "tags": [
-        "LLMs",
-        "Benchmarks"
-      ],
-      "title": "Domain Specific Benchmarks for Evaluating Multimodal Large Language Models",
-      "type": "preprint",
-      "url": "https://arxiv.org/abs/2506.12958",
-      "venue": "arXiv:2506.12958",
-      "year": 2025
-    },
-    {
-      "id": "p08",
-      "authors": "Tariq Qayyum, M. Waqas Haseeb Khan, Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Zouheir Trabelsi, Ikbal Taleb",
-      "tags": [
-        "Quantum ML",
-        "Federated learning"
-      ],
-      "title": "Quantum Federated Learning: Bridging Quantum Computing and Distributed AI",
-      "type": "conference",
-      "venue": "IEEE/ACM UCC",
-      "year": 2024
-    },
-    {
-      "id": "p09",
-      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Barka",
-      "tags": [
-        "Federated learning",
-        "Trust"
-      ],
-      "title": "A Trust and Data Quality-Based Dynamic Node Selection and Aggregation Optimization in Federated Learning",
-      "type": "conference",
-      "venue": "IWCMC",
-      "year": 2024
-    },
-    {
-      "id": "p10",
-      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka, Khaled A. Shuaib",
+      "badge": "Q1 · IF 8.9",
       "featured": true,
       "tags": [
-        "Survey",
-        "Federated learning"
-      ],
-      "title": "Trustworthy Federated Learning: A Survey",
-      "type": "preprint",
-      "url": "https://arxiv.org/abs/2305.11537",
-      "venue": "arXiv:2305.11537",
-      "year": 2023
+        "Post-quantum",
+        "Blockchain",
+        "V2X"
+      ]
     },
     {
-      "id": "p11",
-      "authors": "Asadullah Tariq, Abderrahmane Lakas, Farag M. Sallabi, Tariq Qayyum, Mohamed Adel Serhani, Ezedin Barka",
+      "id": "j06",
+      "title": "On Harnessing EEG Signals for the Comprehensive Assessment of Neurological Disorders: A Review",
+      "authors": "Zaib Unnisa, Asadullah Tariq, Irfanud Din, Abdelkader Nasreddine Belkacem",
+      "venue": "IEEE Transactions on Cognitive and Developmental Systems",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1 · IF 4.9",
+      "featured": false,
+      "tags": [
+        "EEG",
+        "Healthcare"
+      ]
+    },
+    {
+      "id": "j07",
+      "title": "Trustworthy Federated Learning: A Comprehensive Review, Architecture, Key Challenges, and Future Research Prospects",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka, Khaled A. Shuaib",
+      "venue": "IEEE Open Journal of the Communications Society",
+      "year": 2024,
+      "type": "journal",
+      "badge": "Q1 · IF 7.9",
+      "featured": false,
       "tags": [
         "Federated learning",
-        "Reinforcement learning"
-      ],
-      "title": "Empowering Trustworthy Client Selection in Edge Federated Learning Leveraging Reinforcement Learning",
-      "type": "conference",
-      "venue": "IEEE/ACM SEC",
-      "year": 2023
+        "Survey"
+      ]
     },
     {
-      "id": "p12",
-      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Muhammad Ali, Kadhim Hayawi, Irfan Ud Din",
+      "id": "j08",
+      "title": "Dynamic Data Sample Selection and Scheduling in Edge Federated Learning",
+      "authors": "Mohamed Adel Serhani, Haftay Gebreslasie Abreha, Asadullah Tariq, Mohammad Hayajneh, Yang Xu, Kadhim Hayawi",
+      "venue": "IEEE Open Journal of the Communications Society",
+      "year": 2023,
+      "type": "journal",
+      "badge": "Q1 · IF 7.9",
+      "featured": false,
+      "tags": [
+        "Federated learning",
+        "Edge computing"
+      ]
+    },
+    {
+      "id": "j09",
+      "title": "Dynamic Task Offloading in Vehicular Networks Using Large Language Models for Adaptive Low-Latency Decision Making",
+      "authors": "Zouheir Trabelsi, Muhammad Ali, Tariq Qayyum, Asadullah Tariq",
+      "venue": "Scientific Reports",
+      "year": 2026,
+      "type": "journal",
+      "badge": "Q1",
+      "featured": false,
+      "tags": [
+        "LLMs",
+        "Vehicular networks"
+      ]
+    },
+    {
+      "id": "j10",
+      "title": "Threats and Mitigation Strategies for Electroencephalography-Based Person Authentication",
+      "authors": "Zaib Unnisa, Asadullah Tariq, Irfanud Din, Danish Shehzad, Mohamed Adel Serhani, Abdelkader Nasreddine Belkacem, Nadeem Sarwar",
+      "venue": "International Journal of Telemedicine and Applications",
+      "year": 2025,
+      "type": "journal",
+      "badge": "Q1",
+      "featured": false,
+      "tags": [
+        "EEG",
+        "Security"
+      ]
+    },
+    {
+      "id": "j11",
+      "title": "FL-ODP: An Optimized Differential Privacy Enabled Privacy Preserving Federated Learning",
+      "authors": "Maria Iqbal, Asadullah Tariq, Muhammad Adnan, Irfanud Din, Tariq Qayyum",
+      "venue": "IEEE Access",
+      "year": 2023,
+      "type": "journal",
+      "badge": "Q1 · IF 3.9",
+      "featured": false,
+      "tags": [
+        "Federated learning",
+        "Differential privacy"
+      ]
+    },
+    {
+      "id": "j12",
+      "title": "Flexible Global Aggregation and Dynamic Client Selection for Federated Learning in Internet of Vehicles",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Muhammad Ali, Kadhim Hayawi, Irfanud Din",
+      "venue": "Computers, Materials & Continua",
+      "year": 2023,
+      "type": "journal",
+      "badge": "Q1",
+      "featured": false,
       "tags": [
         "Federated learning",
         "Internet of Vehicles"
-      ],
-      "title": "Flexible Global Aggregation and Dynamic Client Selection for Federated Learning in Internet of Vehicles",
-      "type": "journal",
-      "venue": "Journal article",
-      "year": 2023
+      ]
     },
     {
-      "id": "p13",
-      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din",
-      "tags": [
-        "Blockchain",
-        "V2X",
-        "Post-quantum"
-      ],
-      "title": "A Quantum-Resilient Sharded Blockchain Framework for Secure V2X and Federated Learning in Intelligent Transportation Systems",
-      "type": "journal",
-      "venue": "Journal article"
-    },
-    {
-      "id": "p14",
-      "authors": "Tariq Qayyum, Asadullah Tariq, Muhammad Waqad Haseeb, Abderrehmane Lakas, Mohamed Adel Serhani, Zouheir Trabelsi",
-      "tags": [
-        "Quantum ML"
-      ],
-      "title": "Quantum-Enhanced Convolutional Neural Networks for Image Classification",
+      "id": "c01",
+      "title": "FairMoE-FL: A Communication-Efficient and Fair Federated Mixture-of-Experts Framework",
+      "authors": "Asadullah Tariq, Mohamed Adel Serhani, Ahmed Abdolamein, Irfanud Din, Ikbal Taleb",
+      "venue": "IEEE International Conference on Communications (ICC 2026)",
+      "year": 2026,
       "type": "conference",
-      "venue": "Conference paper"
+      "badge": "CORE A",
+      "featured": false
+    },
+    {
+      "id": "c02",
+      "title": "PP-FedTrust: Securing Federated Learning Against Adaptive Poisoning Attacks",
+      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Tariq Qayyum, Ikbal Taleb, Ezedin Salem Barka",
+      "venue": "IEEE Wireless Communications and Networking Conference (WCNC 2026)",
+      "year": 2026,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c03",
+      "title": "CVD-TwinXFL: Digital Twin-Driven Explainable Federated Learning with Freshness-Aware Edge Intelligence for Smart Healthcare",
+      "authors": "Asadullah Tariq, Ikbal Taleb, Mohamed Adel Serhani, Tariq Qayyum, Irfanud Din",
+      "venue": "IEEE International Conference on Machine Learning for Communication and Networking (ICMLCN 2026)",
+      "year": 2026,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c04",
+      "title": "AFRWC: Adaptive Reputation-Weighted Consensus for Hierarchical Federated Learning at the Edge",
+      "authors": "Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq, Muhammad Ali",
+      "venue": "IEEE International Conference on Communications (ICC 2026)",
+      "year": 2026,
+      "type": "conference",
+      "badge": "CORE A",
+      "featured": false
+    },
+    {
+      "id": "c05",
+      "title": "Deep Learning-Driven and Zero-Knowledge Proof-Enhanced Task Offloading for Privacy-Preserving Vehicular Networks",
+      "authors": "Muhammad Ali, Tariq Qayyum, Zouheir Trabelsi, Asadullah Tariq",
+      "venue": "IEEE International Conference on Communications (ICC 2026)",
+      "year": 2026,
+      "type": "conference",
+      "badge": "CORE A",
+      "featured": false
+    },
+    {
+      "id": "c06",
+      "title": "Lightweight MQTT-Aware Post-Quantum Secure Communication Framework for IoT and Consumer Electronics",
+      "authors": "Tariq Qayyum, Asadullah Tariq, Zouheir Trabelsi, Mohamed Adel Serhani",
+      "venue": "IEEE International Conference on Consumer Electronics (ICCE 2026)",
+      "year": 2026,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c07",
+      "title": "Dynamic Edge Computing with MARL and AI-Driven Selective Homomorphic Encryption for Trustworthy Federated Learning",
+      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Tariq Qayyum, Ezedin Salem Barka",
+      "venue": "IEEE INFOCOM 2025 Workshops",
+      "year": 2025,
+      "type": "conference",
+      "badge": "",
+      "featured": true
+    },
+    {
+      "id": "c08",
+      "title": "Enhancing Communication Efficiency in FL with Adaptive Gradient Quantization and Communication Frequency Optimization",
+      "authors": "Asadullah Tariq, Tariq Qayyum, Mohamed Adel Serhani, Farag M. Sallabi, Ikbal Taleb, Ezedin Salem Barka",
+      "venue": "IEEE International Conference on Communications (ICC 2025)",
+      "year": 2025,
+      "type": "conference",
+      "badge": "CORE A",
+      "featured": false
+    },
+    {
+      "id": "c09",
+      "title": "Optimizing Post-Quantum Secure Communication via DL-Based KEM Selection in VANETs",
+      "authors": "Tariq Qayyum, Asad Waqar Malik, Asadullah Tariq, Mohamed Adel Serhani, Zouheir Trabelsi",
+      "venue": "IEEE Vehicular Technology Conference (VTC2025-Fall)",
+      "year": 2025,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c10",
+      "title": "Deep Learning-Based Task Offloading for Efficient and Reliable Computation in High-Mobility Vehicular Networks",
+      "authors": "Muhammad Ali, Usman Nazir, Mubashar Mushtaq, Faizad Ullah, Tariq Qayyum, Asadullah Tariq, Mohamed Adel Serhani, Irfanud Din",
+      "venue": "International Wireless Communications and Mobile Computing Conference (IWCMC 2025)",
+      "year": 2025,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c11",
+      "title": "Intelligent Task Offloading in VANETs: A Hybrid AI-Driven Approach for Low-Latency and Energy Efficiency",
+      "authors": "Tariq Qayyum, Asadullah Tariq, Muhammad Ali, Mohamed Adel Serhani, Zouheir Trabelsi, Maite López-Sánchez",
+      "venue": "International Wireless Communications and Mobile Computing Conference (IWCMC 2025)",
+      "year": 2025,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c12",
+      "title": "Quantum Federated Learning: Bridging Quantum Computing and Distributed AI",
+      "authors": "Tariq Qayyum, M. Waqas Haseeb Khan, Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Zouheir Trabelsi, Ikbal Taleb",
+      "venue": "IEEE/ACM International Conference on Utility and Cloud Computing (UCC 2024)",
+      "year": 2024,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c13",
+      "title": "A Trust and Data Quality-Based Dynamic Node Selection and Aggregation Optimization in Federated Learning",
+      "authors": "Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Tariq Qayyum, Ezedin Salem Barka",
+      "venue": "International Wireless Communications and Mobile Computing Conference (IWCMC 2024)",
+      "year": 2024,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c14",
+      "title": "Empowering Trustworthy Client Selection in Edge Federated Learning Leveraging Reinforcement Learning",
+      "authors": "Asadullah Tariq, Abderrahmane Lakas, Farag M. Sallabi, Tariq Qayyum, Mohamed Adel Serhani, Ezedin Salem Barka",
+      "venue": "ACM/IEEE Symposium on Edge Computing (SEC 2023)",
+      "year": 2023,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c15",
+      "title": "Quantum-Enhanced Convolutional Neural Networks for Image Classification",
+      "authors": "Tariq Qayyum, Asadullah Tariq, Muhammad Waqas Haseeb, Abderrahmane Lakas, Mohamed Adel Serhani, Zouheir Trabelsi",
+      "venue": "IEEE Future Networks World Forum (FNWF 2023)",
+      "year": 2023,
+      "type": "conference",
+      "badge": "",
+      "featured": false,
+      "url": "https://ieeexplore.ieee.org/abstract/document/10520509/"
+    },
+    {
+      "id": "c16",
+      "title": "A Secure and Scalable Peer-to-Peer Federated Learning Approach for Handling Veracity in Big Data",
+      "authors": "Maria Iqbal, Asadullah Tariq, Mohamed Adel Serhani",
+      "venue": "IEEE International Conference on Cloud and Big Data Computing (CBDCom 2023)",
+      "year": 2023,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c17",
+      "title": "Integrating Cyber-Physical System with Federated-Edge Computing for Diabetes Detection and Management",
+      "authors": "Heba M. Khater, Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Salem Barka",
+      "venue": "International Conference on Big-data Service and Intelligent Computation (BDSIC 2023)",
+      "year": 2023,
+      "type": "conference",
+      "badge": "",
+      "featured": false
+    },
+    {
+      "id": "c18",
+      "title": "Federated-Edge Computing Based Cyber-Physical Systems Framework for Enhanced Diabetes Management",
+      "authors": "Heba M. Khater, Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Salem Barka",
+      "venue": "International Conference on Innovations in Information Technology (IIT 2023)",
+      "year": 2023,
+      "type": "conference",
+      "badge": "",
+      "featured": false
     }
   ],
   "projects": [
