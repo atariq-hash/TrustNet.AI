@@ -958,5 +958,77 @@
         "name": "FLAIRE-NextG_IWCMC2027_CFP.pdf"
       }
     }
+  ],
+  "awards": [
+    {
+      "id": "securecomm-2024-best-paper",
+      "title": "Best Paper Award",
+      "kind": "best",
+      "year": 2024,
+      "order": 1,
+      "event": "20th EAI International Conference on Security and Privacy in Communication Networks (SecureComm 2024), Dubai, UAE",
+      "paper": "Quantum-Enhanced Convolutional Neural Networks for Image Classification",
+      "recipients": "Tariq Qayyum, Asadullah Tariq, Saed Alrabaee, Mohamed Adel Serhani, Zouheir Trabelsi"
+    },
+    {
+      "id": "vtc-2025-travel-grant",
+      "title": "IEEE Vehicular Technology Society Travel Grant",
+      "kind": "travel",
+      "year": 2025,
+      "order": 1,
+      "event": "IEEE Vehicular Technology Conference (VTC2025-Fall), Chengdu, China",
+      "paper": "Optimizing Post-Quantum Secure Communication via DL-Based KEM Selection in VANETs",
+      "recipients": "Asadullah Tariq"
+    },
+    {
+      "id": "infocom-2025-travel-grant",
+      "title": "IEEE ComSoc Travel Grant",
+      "kind": "travel",
+      "year": 2025,
+      "order": 2,
+      "event": "IEEE INFOCOM 2025, London, UK",
+      "paper": "Dynamic Edge Computing with MARL and AI-Driven Selective Homomorphic Encryption for Trustworthy Federated Learning",
+      "recipients": "Asadullah Tariq"
+    },
+    {
+      "id": "ojcoms-2024-popular-paper",
+      "title": "Most Popular Paper in Federated Learning",
+      "kind": "honour",
+      "year": 2024,
+      "order": 2,
+      "event": "IEEE Open Journal of the Communications Society",
+      "paper": "Trustworthy Federated Learning: A Comprehensive Review, Architecture, Key Challenges, and Future Research Prospects",
+      "recipients": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka, Khaled A. Shuaib"
+    },
+    {
+      "id": "iit-2023-best-paper",
+      "title": "Best Paper Award",
+      "kind": "best",
+      "year": 2023,
+      "order": 1,
+      "event": "15th International Conference on Innovations in Information Technology (IIT 2023), Abu Dhabi, UAE",
+      "paper": "Federated-Edge Computing Based Cyber-Physical Systems Framework for Enhanced Diabetes Management",
+      "recipients": "Heba M. Khater, Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Salem Barka"
+    },
+    {
+      "id": "bdsic-2023-best-presentation",
+      "title": "Best Paper Presentation Award",
+      "kind": "best",
+      "year": 2023,
+      "order": 2,
+      "event": "International Conference on Big-data Service and Intelligent Computation (BDSIC 2023), Singapore",
+      "paper": "Integrating Cyber-Physical System with Federated-Edge Computing for Diabetes Detection and Management",
+      "recipients": "Heba M. Khater, Asadullah Tariq, Farag M. Sallabi, Mohamed Adel Serhani, Ezedin Salem Barka"
+    },
+    {
+      "id": "sec-2023-travel-grant",
+      "title": "ACM/IEEE Student Travel Grant",
+      "kind": "travel",
+      "year": 2023,
+      "order": 3,
+      "event": "ACM/IEEE Symposium on Edge Computing (SEC 2023), Wilmington, DE, USA",
+      "paper": "Empowering Trustworthy Client Selection in Edge Federated Learning Leveraging Reinforcement Learning",
+      "recipients": "Asadullah Tariq"
+    }
   ]
 }
