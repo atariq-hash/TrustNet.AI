@@ -342,25 +342,30 @@ h3{color:var(--ink)}
 }
 @media (prefers-reduced-motion:reduce){.ambient i{animation:none}}
 
-/* awards */
-.agrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
-@media (max-width:900px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:600px){.agrid{grid-template-columns:1fr}}
-.award{position:relative;display:flex;flex-direction:column;gap:.55rem;padding:1.35rem 1.4rem 1.4rem;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);overflow:hidden;transition:box-shadow .2s,border-color .2s,transform .2s}
-.award:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
-.award::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#F2C46B,#FFE29A,#F2C46B)}
-.award.travel::before{background:linear-gradient(90deg,#5B3DF5,#3F86F4,#7CF0B5)}
-.award.honour::before{background:linear-gradient(90deg,#7CF0B5,#3F86F4)}
-.award .top{display:flex;align-items:center;gap:.7rem}
-.award .medal{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;flex:none;background:linear-gradient(145deg,#FFE29A,#F2C46B);color:#6B4300;box-shadow:0 8px 20px -10px rgba(242,196,107,.9)}
-.award.travel .medal{background:linear-gradient(145deg,#5B3DF5,#3F86F4);color:#fff;box-shadow:0 8px 20px -10px rgba(63,134,244,.9)}
-.award.honour .medal{background:linear-gradient(145deg,#7CF0B5,#3F86F4);color:#0B3A24}
-.award .medal svg{width:23px;height:23px}
-.award .yr{margin-left:auto;font-weight:700;color:var(--muted);font-size:.9rem}
-.award h3{margin:0;font-size:1.12rem;font-weight:600;line-height:1.3;letter-spacing:-.01em}
-.award .ev{color:var(--accent);font-weight:600;font-size:.9rem}
-.award .pp{color:var(--text);font-size:.88rem;font-style:italic;line-height:1.45}
-.award .who{color:var(--muted);font-size:.8rem;line-height:1.45;margin-top:auto;padding-top:.3rem}
+/* awards: compact medal tiles */
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.75rem}
+.award{position:relative;display:flex;align-items:center;gap:.85rem;width:100%;text-align:left;padding:.8rem 1rem .8rem .8rem;border-radius:18px;background:var(--surface);border:1px solid var(--line);cursor:pointer;overflow:hidden;color:var(--text);transition:transform .25s,box-shadow .25s,border-color .25s}
+.award::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.award:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--mc,#F2C46B) 55%,var(--line))}
+.award:hover::after{transition:transform .9s ease;transform:translateX(120%)}
+.award{--mc:#F2C46B;--m1:#FFE7A3;--m2:#E9A93B;--mi:#6B4300}
+.award.travel{--mc:#3F86F4;--m1:#8FB8FF;--m2:#4B37E8;--mi:#fff}
+.award.honour{--mc:#3FC98A;--m1:#A8F5CC;--m2:#2BA36B;--mi:#0B3A24}
+.medal{position:relative;flex:none;width:52px;height:52px;margin-bottom:8px}
+.medal .disc{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;color:var(--mi);background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.85),transparent 38%),conic-gradient(from 210deg,var(--m1),var(--m2),var(--m1),var(--m2),var(--m1));box-shadow:0 0 0 3px color-mix(in srgb,var(--mc) 22%,transparent),0 8px 18px -8px var(--mc);z-index:1}
+.medal .disc::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.65)}
+.medal svg{width:21px;height:21px;position:relative}
+.medal i{position:absolute;bottom:-9px;width:12px;height:18px;background:var(--m2);clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);opacity:.9}
+.medal i:first-of-type{left:12px;transform:rotate(14deg)}
+.medal i:last-of-type{right:12px;transform:rotate(-14deg)}
+.award .tx{min-width:0;display:flex;flex-direction:column;gap:.12rem}
+.award b{color:var(--ink);font-weight:600;font-size:.94rem;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.award .ev{color:var(--mc);font-weight:600;font-size:.8rem;filter:saturate(1.2) brightness(.85)}
+:root[data-theme="dark"] .award .ev{filter:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .award .ev{filter:none}}
+.award .yr2{position:absolute;top:.55rem;right:.7rem;font-size:.7rem;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.award .tx{padding-right:2.2rem}
+@media (prefers-reduced-motion:reduce){.award::after{display:none}}
 
 /* floating chat window */
 .herocta{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2rem}
@@ -1036,13 +1041,17 @@ function openCall(id){
 }
 
 const AKINDS=[["best","Best paper award"],["travel","Travel grant"],["honour","Honour or recognition"]];
+const shortEv=e=>{e=String(e||"");const m=e.match(/\(([^)]+)\)/);return m?m[1]:e.split(",")[0]};
 function renderAwards(){
   const list=vis(S.awards).sort((a,b)=>(Number(b.year)||0)-(Number(a.year)||0)||(Number(a.order)||99)-(Number(b.order)||99));
-  const sec=$("#awards");if(!S.ready||!list.length){sec.hidden=!S.ready?false:true;if(!S.ready)$("#awardOut").innerHTML=`<div class="loading" style="grid-column:1/-1"><span class="spin"></span></div>`;return}
+  const sec=$("#awards");if(!S.ready){sec.hidden=false;$("#awardOut").innerHTML=`<div class="loading" style="grid-column:1/-1"><span class="spin"></span></div>`;return}
+  if(!list.length){sec.hidden=true;return}
   sec.hidden=false;
-  $("#awardOut").innerHTML=list.map(a=>{const k=a.kind||"best";return `<article class="award ${k}"><div class="top"><span class="medal">${ic(k==="travel"?"plane":k==="honour"?"medal":"trophy")}</span><span class="tag ${k==="best"?"warn":k==="travel"?"ai":"ok"}">${esc((AKINDS.find(x=>x[0]===k)||[,"Award"])[1])}</span><span class="yr">${esc(a.year||"")}</span></div>
-    <h3>${esc(a.title)}</h3>${a.event?`<div class="ev">${esc(a.event)}</div>`:""}${a.paper?`<div class="pp">“${esc(a.paper)}”</div>`:""}${a.recipients?`<div class="who">${esc(a.recipients)}</div>`:""}${a.link?`<a class="btn sm" style="align-self:flex-start;margin-top:.3rem" href="${esc(a.link)}" target="_blank" rel="noopener">Details${ic("out")}</a>`:""}</article>`}).join("");
+  $("#awardOut").innerHTML=list.map(a=>{const k=a.kind||"best";return `<button class="award ${k}" data-award="${esc(a.id)}" aria-label="${esc(a.title+", "+shortEv(a.event))}"><span class="medal"><i></i><i></i><span class="disc">${ic(k==="travel"?"plane":k==="honour"?"medal":"trophy")}</span></span><span class="tx"><b>${esc(a.title)}</b><span class="ev">${esc(shortEv(a.event))}</span></span><span class="yr2">${esc(a.year||"")}</span></button>`}).join("");
 }
+function openAward(id){const a=S.awards.find(x=>x.id===id);if(!a)return;const k=a.kind||"best";
+  openModal(`<div class="mhead">${mclose}<span class="tag">${esc((AKINDS.find(x=>x[0]===k)||[,"Award"])[1])}</span> <span class="tag">${esc(a.year||"")}</span><h3 id="modalTitle">${esc(a.title)}</h3><div class="sub">${esc(a.event||"")}</div></div>
+  <div class="mbody">${a.paper?`<h4>Paper</h4><p>“${esc(a.paper)}”</p>`:""}${a.recipients?`<h4>${/,| and /.test(a.recipients)?"Recipients":"Recipient"}</h4><p>${esc(a.recipients)}</p>`:""}${a.link?`<p style="margin-top:1.2rem"><a class="btn sm" href="${esc(a.link)}" target="_blank" rel="noopener">Details${ic("out")}</a></p>`:""}</div>`)}
 
 const PKINDS=[["university","University"],["institute","Research institute"],["industry","Industry partner"],["government","Government or funder"],["other","Partner"]];
 function renderPartners(){
@@ -1234,9 +1243,10 @@ function openEvent(id){
 /* ---------- site events ---------- */
 document.addEventListener("click",e=>{
   if(e.target.closest("a"))return;
-  const t=e.target.closest("[data-call],[data-cf],[data-person],[data-project],[data-post],[data-event],[data-pf],[data-prf],[data-pt],[data-nf],[data-ef],[data-pubtoggle],[data-bib],[data-explain],.suggest,[data-ref]");
+  const t=e.target.closest("[data-award],[data-call],[data-cf],[data-person],[data-project],[data-post],[data-event],[data-pf],[data-prf],[data-pt],[data-nf],[data-ef],[data-pubtoggle],[data-bib],[data-explain],.suggest,[data-ref]");
   if(!t)return;
   const d=t.dataset;
+  if(d.award!==undefined){openAward(d.award);return}
   if(d.call!==undefined){openCall(d.call);return}
   if(d.cf){UI.call=d.cf;renderCalls();return}
   if(d.person!==undefined){if(modal.open)modal.close();openPerson(d.person)}
