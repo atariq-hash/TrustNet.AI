@@ -197,6 +197,29 @@
         "Quantum machine learning",
         "Open quantum systems"
       ]
+    },
+    {
+      "id": "zouheir-trabelsi",
+      "name": "Prof. Zouheir Trabelsi",
+      "role": "collab",
+      "order": 8,
+      "photo": "assets/uploads/zouheir-trabelsi.jpg",
+      "title": "Professor, Department of Information Systems and Security, College of Information Technology, United Arab Emirates University",
+      "email": "trabelsi@uaeu.ac.ae",
+      "bio": "Zouheir Trabelsi is a Professor in the Department of Information Systems and Security at the College of Information Technology, United Arab Emirates University, where he chaired the Information Security department for seven years. He received his PhD in Computer Science from Tokyo University of Agriculture and Technology, Japan, in 1994, and was a Fulbright Visiting Scholar. He has co-authored books on network security, including Network Attacks and Defenses: A Hands-on Approach, and his research covers network and information security, firewalls and intrusion detection, deep learning for cybersecurity, and post-quantum and blockchain security for vehicular networks and federated learning.",
+      "education": [
+        "PhD Computer Science, Tokyo University of Agriculture and Technology, Japan, 1994"
+      ],
+      "interests": [
+        "Network security",
+        "Intrusion detection",
+        "Post-quantum security",
+        "Vehicular networks"
+      ],
+      "awards": [
+        "University Excellence Merit Award, United Arab Emirates University, 2017/2018",
+        "Fulbright Visiting Scholar"
+      ]
     }
   ],
   "publications": [
