@@ -972,13 +972,13 @@
     },
     {
       "id": "vtc-2025-travel-grant",
-      "title": "IEEE Vehicular Technology Society Travel Grant",
+      "title": "IEEE VTS Travel Grant",
       "kind": "travel",
       "year": 2025,
       "order": 1,
-      "event": "IEEE Vehicular Technology Conference (VTC2025-Fall), Chengdu, China",
+      "event": "IEEE Vehicular Technology Society, IEEE Vehicular Technology Conference (VTC2025-Fall), Chengdu, China",
       "paper": "Optimizing Post-Quantum Secure Communication via DL-Based KEM Selection in VANETs",
-      "recipients": "Asadullah Tariq"
+      "recipients": "Asadullah Tariq and Tariq Qayyum"
     },
     {
       "id": "infocom-2025-travel-grant",
@@ -992,11 +992,11 @@
     },
     {
       "id": "ojcoms-2024-popular-paper",
-      "title": "Most Popular Paper in Federated Learning",
+      "title": "Most Popular FL Paper",
       "kind": "honour",
       "year": 2024,
       "order": 2,
-      "event": "IEEE Open Journal of the Communications Society",
+      "event": "IEEE Open Journal of the Communications Society (OJ-COMS), most popular paper in federated learning",
       "paper": "Trustworthy Federated Learning: A Comprehensive Review, Architecture, Key Challenges, and Future Research Prospects",
       "recipients": "Asadullah Tariq, Mohamed Adel Serhani, Farag M. Sallabi, Tariq Qayyum, Ezedin Salem Barka, Khaled A. Shuaib"
     },
