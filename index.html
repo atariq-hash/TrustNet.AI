@@ -71,7 +71,10 @@ a{color:var(--accent)}
 .btn.glass:hover{background:rgba(255,255,255,.2)}
 .pill-label{display:inline-flex;align-items:center;gap:.45rem;padding:.32rem .8rem;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.78rem;font-weight:600;color:var(--ink)}
 .pill-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.newtag{display:inline-block;font-size:.68rem;font-weight:700;padding:.1rem .45rem;border-radius:999px;background:#7CF0B5;color:#0B3A24}
+.newtag{display:inline-flex;align-items:center;gap:.4rem;flex:none;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.38rem .85rem;border-radius:999px;background:linear-gradient(180deg,#A8F5CC,#6FDCA4);color:#0B3A24;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 0 1px rgba(124,240,181,.5)}
+.newtag::before{content:"";width:7px;height:7px;border-radius:50%;background:#1E7A52;animation:newdot 1.8s ease-in-out infinite}
+@keyframes newdot{50%{opacity:.35}}
+@media (max-width:600px){.announce{font-size:.88rem;gap:.6rem}.newtag{font-size:.72rem;padding:.3rem .65rem}}
 .aitag{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;background:var(--ai-soft);color:var(--ai)}
 .aitag svg{width:12px;height:12px}
 
@@ -97,9 +100,11 @@ a{color:var(--accent)}
 .mobilemenu a:hover{background:rgba(255,255,255,.12)}
 
 .hero-inner{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:3rem 1.5rem 5rem;text-align:center}
-.announce{display:inline-flex;align-items:center;gap:.6rem;padding:.35rem .9rem .35rem .4rem;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);font-size:.86rem;font-weight:500;color:#fff;text-decoration:none;backdrop-filter:blur(6px)}
-.announce:hover{background:rgba(255,255,255,.18)}
-.announce svg{width:15px;height:15px}
+.announce{display:inline-flex;align-items:center;gap:.85rem;max-width:100%;padding:.4rem 1.1rem .4rem .4rem;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);font-size:1.02rem;font-weight:500;color:#fff;text-decoration:none;backdrop-filter:blur(8px);box-shadow:0 10px 30px -14px rgba(10,0,60,.6);transition:background .2s,opacity .35s}
+.announce:hover{background:rgba(255,255,255,.2)}
+.announce #announceText{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.announce svg{flex:none}
+.announce svg{width:18px;height:18px}
 h1{margin:1.3rem 0 0;font-weight:600;font-size:clamp(3rem,8.6vw,6.4rem);line-height:.98;letter-spacing:-.035em;color:#fff;text-wrap:balance}
 h1 .soft{background:linear-gradient(100deg,#CDBDFF 0%,#BFE0FF 45%,#FFFFFF 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lede{max-width:640px;margin:1.3rem auto 0;font-size:clamp(1.02rem,1.6vw,1.2rem);color:rgba(255,255,255,.86)}
@@ -893,7 +898,9 @@ function renderSite(){
   const fc=sortedCalls(vis(S.calls)).find(c=>c.featured&&callOpen(c));
   const ann=[];if(st.announceText)ann.push({t:st.announceText,h:st.announceLink||"#news"});
   sortedPosts(vis(S.posts)).filter(p=>p.kind!=="read").slice(0,5).forEach(p=>ann.push({t:p.title,post:p.id}));
-  an.hidden=true;clearInterval(ANN.timer);
+  const accs=sortedPosts(vis(S.posts)).filter(p=>/accept/i.test(p.title)).slice(0,4).map(p=>({t:p.title,post:p.id}));
+  if(st.announceText)accs.unshift({t:st.announceText,h:st.announceLink||"#news"});
+  ANN.list=accs;if(!accs.length){an.hidden=true;clearInterval(ANN.timer)}else{an.hidden=false;showAnn(false)}
   $("#heroCalls").innerHTML=fc?`<a class="btn glass sm" href="#calls">${ic("megaphone")}${esc(fc.acronym||"Our workshop")}${fc.host?` · ${esc(fc.host.split("·")[0].trim())}`:""}</a>${fc.cfp||fc.link?`<a class="btn glass sm" href="${esc(fc.cfp?img(fc.cfp):fc.link)}" target="_blank" rel="noopener">${ic("down")}Call for papers</a>`:""}`:"";
   const areas=Array.isArray(st.areas)&&st.areas.length?st.areas:[];
   $("#areaStrip").innerHTML=areas.slice(0,6).map(a=>`<span>${esc(a.title)}</span>`).join("");
