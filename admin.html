@@ -1098,7 +1098,7 @@ function renderPubs(){
   const sub=list.filter(p=>p.status==="submitted"),pubd=list.filter(p=>p.status!=="submitted");
   const acc=p=>p.status==="accepted"?1:0,latest=(a,b)=>acc(b)-acc(a)||(b.year||0)-(a.year||0)||tier(a)-tier(b)||String(a.title).localeCompare(String(b.title));
   const groups=[["Journal articles",pubd.filter(p=>p.type==="journal").sort(latest)],["Conference papers",pubd.filter(p=>p.type==="conference").sort(latest)],["Other publications",pubd.filter(p=>p.type!=="journal"&&p.type!=="conference")],["Submitted papers · under review",sub]];
-  out.innerHTML=groups.filter(g=>g[1].length).map(([n,g])=>`<li class="pubgroup">${n} <span>${g.length}</span></li>`+g.map(pubItem).join("")).join("");
+  out.innerHTML=groups.filter(g=>g[1].length).map(([n,g])=>`<li class="pubgroup">${n} <span>${g.length}</span>${n==="Journal articles"?`<small>Impact factors and quartiles: Clarivate Journal Citation Reports, June 2026</small>`:""}</li>`+g.map(pubItem).join("")).join("");
 }
 
 function renderNews(){
