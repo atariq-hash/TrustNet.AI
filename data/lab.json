@@ -230,7 +230,7 @@
       "venue": "IEEE Internet of Things Journal",
       "year": 2025,
       "type": "journal",
-      "badge": "Q1 · IF 8.9",
+      "badge": "Q1 · IF 8.7",
       "featured": true,
       "tags": [
         "Federated learning",
@@ -246,7 +246,7 @@
       "venue": "IEEE Transactions on Consumer Electronics",
       "year": 2025,
       "type": "journal",
-      "badge": "Q1 · IF 10.9",
+      "badge": "Q1 · IF 9.9",
       "featured": true,
       "tags": [
         "Federated learning",
@@ -262,7 +262,7 @@
       "venue": "IEEE Transactions on Consumer Electronics",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1 · IF 10.9",
+      "badge": "Q1 · IF 9.9",
       "featured": false,
       "tags": [
         "Federated learning",
@@ -278,7 +278,7 @@
       "venue": "IEEE Transactions on Consumer Electronics",
       "year": 2025,
       "type": "journal",
-      "badge": "Q1 · IF 10.9",
+      "badge": "Q1 · IF 9.9",
       "featured": false,
       "tags": [
         "Federated learning",
@@ -295,7 +295,7 @@
       "venue": "IEEE Transactions on Intelligent Transportation Systems",
       "year": 2025,
       "type": "journal",
-      "badge": "Q1 · IF 8.9",
+      "badge": "Q1 · IF 9.1",
       "featured": true,
       "tags": [
         "Post-quantum",
@@ -312,7 +312,7 @@
       "venue": "IEEE Transactions on Cognitive and Developmental Systems",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1 · IF 4.9",
+      "badge": "IF 4.7",
       "featured": false,
       "tags": [
         "EEG",
@@ -326,7 +326,7 @@
       "venue": "IEEE Open Journal of the Communications Society",
       "year": 2024,
       "type": "journal",
-      "badge": "Q1 · IF 7.9",
+      "badge": "Q1 · IF 6.2",
       "featured": false,
       "tags": [
         "Federated learning",
@@ -342,7 +342,7 @@
       "venue": "IEEE Open Journal of the Communications Society",
       "year": 2023,
       "type": "journal",
-      "badge": "Q1 · IF 7.9",
+      "badge": "Q1 · IF 6.2",
       "featured": false,
       "tags": [
         "Federated learning",
@@ -358,7 +358,7 @@
       "venue": "Scientific Reports",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1",
+      "badge": "Q1 · IF 4.9",
       "featured": false,
       "tags": [
         "LLMs",
@@ -374,7 +374,7 @@
       "venue": "International Journal of Telemedicine and Applications",
       "year": 2025,
       "type": "journal",
-      "badge": "Q1",
+      "badge": "IF 2.2",
       "featured": false,
       "tags": [
         "EEG",
@@ -388,7 +388,7 @@
       "venue": "IEEE Access",
       "year": 2023,
       "type": "journal",
-      "badge": "Q1 · IF 3.9",
+      "badge": "Q2 · IF 4.2",
       "featured": false,
       "tags": [
         "Federated learning",
@@ -404,7 +404,7 @@
       "venue": "Computers, Materials & Continua",
       "year": 2023,
       "type": "journal",
-      "badge": "Q1",
+      "badge": "IF 2.4",
       "featured": false,
       "tags": [
         "Federated learning",
@@ -599,7 +599,7 @@
       "venue": "IEEE Internet of Things Journal",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1 · IF 8.9",
+      "badge": "Q1 · IF 8.7",
       "status": "accepted",
       "featured": true,
       "tags": [
@@ -614,7 +614,7 @@
       "venue": "IEEE Transactions on Consumer Electronics",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1 · IF 10.9",
+      "badge": "Q1 · IF 9.9",
       "status": "accepted",
       "featured": false,
       "tags": [
@@ -629,7 +629,7 @@
       "venue": "IEEE Open Journal of the Communications Society",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1",
+      "badge": "Q1 · IF 6.2",
       "status": "accepted",
       "featured": true,
       "tags": [
@@ -645,7 +645,7 @@
       "venue": "IEEE Access",
       "year": 2024,
       "type": "journal",
-      "badge": "Q1 · IF 3.9",
+      "badge": "Q2 · IF 4.2",
       "status": "published",
       "doi": "10.1109/ACCESS.2024.3407376",
       "featured": false,
@@ -661,7 +661,7 @@
       "venue": "Review of Education",
       "year": 2025,
       "type": "journal",
-      "badge": "IF 3.4",
+      "badge": "Q1 · IF 4.0",
       "status": "published",
       "doi": "10.1002/rev3.70071",
       "featured": false,
@@ -688,7 +688,7 @@
       "venue": "IEEE Open Journal of the Communications Society",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1",
+      "badge": "Q1 · IF 6.2",
       "status": "accepted",
       "featured": false
     },
@@ -699,7 +699,7 @@
       "venue": "IEEE Open Journal of the Communications Society",
       "year": 2026,
       "type": "journal",
-      "badge": "Q1",
+      "badge": "Q1 · IF 6.2",
       "status": "accepted",
       "featured": false
     }
